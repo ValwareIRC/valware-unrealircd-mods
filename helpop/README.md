@@ -5,7 +5,7 @@ This module provides the following:
   - Command: /helpoper   - this sends a server notice to other users who have usermode +h if the user also have +h
   (Syntax: /helpoper <your message to send>)
   - Command: /report     - this sends server notice from a user with no usermode +h to users who have usermode +h
-  (Syntax: /helpoper <your message to send>)
+  (Syntax: /report <your message to send>)
  
  
 Shout out to Gottem for his dank templates
