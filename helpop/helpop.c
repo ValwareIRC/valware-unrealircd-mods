@@ -1,21 +1,32 @@
+/*
+  Licence: GPLv3
+  Provides "helpop" by Valware :D
+  usermode h (helpop) (settable by IRCops only)
+  channelmode g (helpop-only)
+  command HELPOP <string to send to other helpops>
+  command REPORT <string for users to send to helpops>
+  
+  parts taken from unrealircd source code, and Gottem's modules and dank module templates ayyyy
+  shout out to Syzop for the epic documentation of unrealircd module api :D
+  my first module submission lmao
+  
+  this module have no configurable option
+*/
 /*** <<<MODULE MANAGER START>>>
 module
 {
         documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/helpop/README.md";
 	troubleshooting "In case of problems, documentation or e-mail me at v.a.pond@outlook.com";
         min-unrealircd-version "5.*";
-
         // THE FOLLOWING FIELDS ARE OPTIONAL:
-
         // Maximum version that this module supports:
         max-unrealircd-version "5.*";
-
         // This text is displayed after running './unrealircd module install ...'
         // It is recommended not to make this an insane number of lines and refer to a URL instead
         // if you have lots of text/information to share:
         post-install-text {
                 "The module is installed. Now all you need to do is add a loadmodule line:";
-                "loadmodule \"third/helpop.so\";";
+                "loadmodule \"third/helpop\";";
                 "And /REHASH the IRCd.";
                 "The module does not need any other configuration.";
         }
@@ -52,7 +63,7 @@ ModuleHeader MOD_HEADER = {
 	"third/helpop", // Module name
 	"1.0", // Module Version
 	"HelpOp", // Description
-	"QT314", // Author
+	"Valware", // Author
 	"unrealircd-5", // Unreal Version
 };
 
