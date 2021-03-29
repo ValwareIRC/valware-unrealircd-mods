@@ -15,7 +15,7 @@ module
         // if you have lots of text/information to share:
         post-install-text {
                 "The module is installed. Now all you need to do is add a loadmodule line:";
-                "loadmodule \"third/testmod\";";
+                "loadmodule \"third/helpop.so\";";
                 "And /REHASH the IRCd.";
                 "The module does not need any other configuration.";
         }
@@ -99,7 +99,7 @@ int helponly_check (Client *client, Channel *channel, char *key, char *parv[])
 {
 	if (IsHelpOnly(channel) && !IsHelpop(client)) {
 		sendnotice(client, "*** (%s) You must be a logged in member of staff to join that room.",channel->chname);
-		return;
+		return ERR_NEEDREGGEDNICK;
 	}
 	return 0;
 }
@@ -167,11 +167,11 @@ CMD_FUNC(REPORT) {
 		dumpit(client, report_help);
 		return;
 	}
-	if (IsHelpop(client)) {
+	else if (IsHelpop(client)) {
 		sendnotice(client, "*** /REPORT is for non-helpops. Try /HELPOPER instead");
 		return;
 	}
-	if (!IsHelpop(client)) {
+	else {
 		sendnotice(client, "*** Thank you. Your report has been submitted.");
 		sendto_umode_global(extumode_helpop,"*** REPORT by %s: %s",client->name,parv[1]);
 
@@ -188,10 +188,10 @@ CMD_FUNC(HELPOPER) {
 		return;
 	}
 
-	if (IsHelpop(client)) {
+	else if (IsHelpop(client)) {
 		sendto_umode_global(extumode_helpop,"*** HelpOper: from %s: %s",client->name,parv[1]);
 	}
-	if (!IsHelpop(client)) {
+	else {
 		sendnotice(client, "*** You may not use this command.");
 		return;
 	}
