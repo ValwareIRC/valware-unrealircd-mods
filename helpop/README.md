@@ -3,7 +3,7 @@ This module provides the following:
   - Usermode h (HelpOp)
   - Channel mode g (Only HelpOp can join)
   - Command: /helpoper   - this sends a server notice to other users who have usermode +h if the user also have +h
-  - Command: /report     - this sends server from a user with no usermode +h to users who have usermode +h
+  - Command: /report     - this sends server notice from a user with no usermode +h to users who have usermode +h
  
  
 Shout out to Gottem for his dank templates
