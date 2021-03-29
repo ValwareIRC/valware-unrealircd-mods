@@ -1,3 +1,26 @@
+/*** <<<MODULE MANAGER START>>>
+module
+{
+        documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/helpop/README.md";
+	troubleshooting "In case of problems, documentation or e-mail me at v.a.pond@outlook.com";
+        min-unrealircd-version "5.*";
+
+        // THE FOLLOWING FIELDS ARE OPTIONAL:
+
+        // Maximum version that this module supports:
+        max-unrealircd-version "5.*";
+
+        // This text is displayed after running './unrealircd module install ...'
+        // It is recommended not to make this an insane number of lines and refer to a URL instead
+        // if you have lots of text/information to share:
+        post-install-text {
+                "The module is installed. Now all you need to do is add a loadmodule line:";
+                "loadmodule \"third/testmod\";";
+                "And /REHASH the IRCd.";
+                "The module does not need any other configuration.";
+        }
+}
+*** <<<MODULE MANAGER END>>>
 
 #include "unrealircd.h"
 
