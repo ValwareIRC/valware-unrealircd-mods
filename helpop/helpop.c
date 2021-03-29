@@ -21,7 +21,7 @@ module
         }
 }
 *** <<<MODULE MANAGER END>>>
-
+*/
 #include "unrealircd.h"
 
 Cmode_t EXTCMODE_HELPOP;
