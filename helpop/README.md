@@ -6,6 +6,7 @@ This module provides the following:
   (Syntax: /helpoper your message to send)
   - Command: /report     - this sends server notice from a user with no usermode +h to users who have usermode +h
   (Syntax: /report your message to send)
+  - SWHOIS line marking +h "is available for help"
  
  
 Shout out to Gottem for his dank templates
