@@ -15,6 +15,7 @@ Shout out to Syzop for his epic documentation skillz
 Parts of code taken from parts of unrealircd5.0.9 source code
 
 This module have no configurable option
-
+This module is a re-make of the old helpop module (which was replaced by the then /helpop ?cmds) which
+was removed in UnrealIRCd v4 but I liked it so I maked it again
 This module needs to be installed on every server on your network
  
