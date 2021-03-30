@@ -18,6 +18,8 @@ This module have no configurable option
 
 This module is a re-make of the old helpop module (which was replaced by the then /helpop ?cmds) which
 was removed in UnrealIRCd v4 but I liked it so I maked it again
+![alt text](https://i.redd.it/hw8z6jdu1na31.jpg)
+
 
 This module needs to be installed on every server on your network
  
