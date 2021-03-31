@@ -1,4 +1,4 @@
-This module provides command /CHGSWHOIS which does what it says on the tin
+This module provides command /CHGSWHOIS and /DELSWHOIS which does what it says on the tin
 
 This module changes a users "special whois" line to the string you specify
 
