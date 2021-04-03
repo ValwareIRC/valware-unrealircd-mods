@@ -14,7 +14,7 @@
 /*** <<<MODULE MANAGER START>>>
 module
 {
-        documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/helpop/README.md";
+        documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/helpop-lite/README.md";
 	troubleshooting "In case of problems, documentation or e-mail me at v.a.pond@outlook.com";
         min-unrealircd-version "5.*";
         max-unrealircd-version "5.*";
