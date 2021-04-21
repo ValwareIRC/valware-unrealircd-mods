@@ -59,8 +59,6 @@ CMD_FUNC(yeetus){
 	Membership *lp;
 	char *name, *p = NULL;
 	int i;
-	char *comment = (parc > 3 && parv[3] ? parv[3] : NULL);
-	char commentx[512];
 	char jbuf[BUFSIZE];
 	int ntargets = 0;
 	int maxtargets = max_targets_for_command("SAYEET");
@@ -87,18 +85,11 @@ CMD_FUNC(yeetus){
 	/* Relay it on, if it's not my target */
 	if (!MyUser(target))
 	{
-		if (comment)
-		{
-			sendto_one(target, NULL, ":%s SAYEET %s %s :%s", client->id, target->id, parv[2], comment);
-			ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s (%s)",
-			         client->name, target->name, parv[2], comment);
-		}
-		else
-		{
-			sendto_one(target, NULL, ":%s SAYEET %s %s", client->id, target->id, parv[2]);
-			ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s",
-			         client->name, target->name, parv[2]);
-		}
+		
+		sendto_one(target, NULL, ":%s SAYEET %s %s", client->id, target->id, parv[2]);
+		ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s",
+		    client->name, target->name, parv[2]);
+		
 		return;
 	}
 
@@ -141,31 +132,17 @@ CMD_FUNC(yeetus){
 
 	strcpy(parv[2], jbuf);
 
-	if (comment)
-	{
-		strcpy(commentx, "SAYEET: ");
-		strlcat(commentx, comment, 512);
-	}
 
 	parv[0] = target->name; // nick
 	parv[1] = parv[2]; // chan
-	parv[2] = NULL; // comment
-	if (comment)
-	{
-		sendnotice(target, "*** You were forced to cycle %s (%s)", parv[1], commentx);
-		sendto_umode_global(UMODE_OPER, "%s used SAYEET to make %s cycle %s (%s)",
-				    client->name, target->name, parv[1], comment);
-		ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s cycle %s (%s)",
-			client->name, target->name, parv[1], comment);
-	}
-	else
-	{
-		sendnotice(target, "*** You were forced to cycle %s", parv[1]);
-		sendto_umode_global(UMODE_OPER, "%s used SAYEET to make %s cycle %s",
-				    client->name, target->name, parv[1]);
-		ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s cycle %s",
-			client->name, target->name, parv[1]);
-	}
+	parv[2] = NULL;
+	
+	sendnotice(target, "*** You were forced to cycle %s", parv[1]);
+	sendto_umode_global(UMODE_OPER, "%s used SAYEET to make %s cycle %s",
+		client->name, target->name, parv[1]);
+	ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s cycle %s",
+		client->name, target->name, parv[1]);
+	
 	do_cmd(target, NULL, "CYCLE", 2, parv);
 	/* target may be killed now due to the part reason @ spamfilter */
 }
