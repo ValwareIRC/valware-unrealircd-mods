@@ -63,11 +63,11 @@ CMD_FUNC(yeetus){
 	char commentx[512];
 	char jbuf[BUFSIZE];
 	int ntargets = 0;
-	int maxtargets = max_targets_for_command("SAPART");
+	int maxtargets = max_targets_for_command("SAYEET");
 
 	if ((parc < 3) || BadPtr(parv[2]))
         {
-                sendnumeric(client, ERR_NEEDMOREPARAMS, "SAPART");
+                sendnumeric(client, ERR_NEEDMOREPARAMS, "SAYEET");
                 return;
         }
 
@@ -89,14 +89,14 @@ CMD_FUNC(yeetus){
 	{
 		if (comment)
 		{
-			sendto_one(target, NULL, ":%s SAPART %s %s :%s", client->id, target->id, parv[2], comment);
-			ircd_log(LOG_SACMDS,"SAPART: %s used SAPART to make %s part %s (%s)",
+			sendto_one(target, NULL, ":%s SAYEET %s %s :%s", client->id, target->id, parv[2], comment);
+			ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s (%s)",
 			         client->name, target->name, parv[2], comment);
 		}
 		else
 		{
-			sendto_one(target, NULL, ":%s SAPART %s %s", client->id, target->id, parv[2]);
-			ircd_log(LOG_SACMDS,"SAPART: %s used SAPART to make %s part %s",
+			sendto_one(target, NULL, ":%s SAYEET %s %s", client->id, target->id, parv[2]);
+			ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s",
 			         client->name, target->name, parv[2]);
 		}
 		return;
@@ -108,7 +108,7 @@ CMD_FUNC(yeetus){
 	{
 		if (++ntargets > maxtargets)
 		{
-			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "SAPART");
+			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "SAYEET");
 			break;
 		}
 		if (!(channel = get_channel(target, name, 0)))
