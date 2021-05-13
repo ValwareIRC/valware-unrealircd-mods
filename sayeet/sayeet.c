@@ -1,6 +1,6 @@
 /* 
 
-	SAYEET command for forcing someone to cycle a channel 
+	SACYCLE command for forcing someone to cycle a channel 
 
 	Largely taken from unrealircd sauce code
 
@@ -14,7 +14,7 @@ module
         max-unrealircd-version "5.*";
         post-install-text {
                 "The module is installed. Now all you need to do is add a loadmodule line:";
-                "loadmodule \"third/sayeet\";";
+                "loadmodule \"third/sacycle\";";
                 "And /REHASH the IRCd.";
                 "The module does not need any other configuration.";
         }
@@ -34,7 +34,7 @@ module
 
 
 /* the cmd lmao */
-#define CMD "SAYEET"
+#define CMD "SACYCLE"
 
 CMD_FUNC(yeetus);
 
@@ -61,11 +61,11 @@ CMD_FUNC(yeetus){
 	int i;
 	char jbuf[BUFSIZE];
 	int ntargets = 0;
-	int maxtargets = max_targets_for_command("SAYEET");
+	int maxtargets = max_targets_for_command("SACYCLE");
 
 	if ((parc < 3) || BadPtr(parv[2]))
         {
-                sendnumeric(client, ERR_NEEDMOREPARAMS, "SAYEET");
+                sendnumeric(client, ERR_NEEDMOREPARAMS, "SACYCLE");
                 return;
         }
 
@@ -86,8 +86,8 @@ CMD_FUNC(yeetus){
 	if (!MyUser(target))
 	{
 		
-		sendto_one(target, NULL, ":%s SAYEET %s %s", client->id, target->id, parv[2]);
-		ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s part %s",
+		sendto_one(target, NULL, ":%s SACYCLE %s %s", client->id, target->id, parv[2]);
+		ircd_log(LOG_SACMDS,"SACYCLE: %s used SACYCLE to make %s part %s",
 		    client->name, target->name, parv[2]);
 		
 		return;
@@ -99,7 +99,7 @@ CMD_FUNC(yeetus){
 	{
 		if (++ntargets > maxtargets)
 		{
-			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "SAYEET");
+			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "SACYCLE");
 			break;
 		}
 		if (!(channel = get_channel(target, name, 0)))
@@ -138,9 +138,9 @@ CMD_FUNC(yeetus){
 	parv[2] = NULL;
 	
 	sendnotice(target, "*** You were forced to cycle %s", parv[1]);
-	sendto_umode_global(UMODE_OPER, "%s used SAYEET to make %s cycle %s",
+	sendto_umode_global(UMODE_OPER, "%s used SACYCLE to make %s cycle %s",
 		client->name, target->name, parv[1]);
-	ircd_log(LOG_SACMDS,"SAYEET: %s used SAYEET to make %s cycle %s",
+	ircd_log(LOG_SACMDS,"SACYCLE: %s used SACYCLE to make %s cycle %s",
 		client->name, target->name, parv[1]);
 	
 	do_cmd(target, NULL, "CYCLE", 2, parv);
