@@ -82,26 +82,25 @@ int supersecureonly_check (Client *client, Channel *channel, char *key, char *pa
 	// if the user is an oper, let them through, return 0
 	if (IsOper(client)){ return 0; }
 	
+	// let them through if they're logged in
+	if (IsLoggedIn(client)){
+		return 0;
+	}
+	// let them through if they're secure
+	if (client->umodes & UMODE_SECURE){
+		return 0;
+	}
+	
 	// if they're not a webirc user, fuck them off
-	if (!IsWebircUser(client)){
-		sendnumeric(client, ERR_FORBIDDENCHANNEL, channel->chname, "This channel is for web users only.");
+	if (IsWebircUser(client)){
+		return 0;
+	}
+	
+	// else fuck them off
+	else {
+		sendnumeric(client, ERR_FORBIDDENCHANNEL, channel->chname, "This channel is for registered users, web users, secure clients only.");
 		return ERR_NEEDREGGEDNICK;
 	}
-	
-	// if they're not logged in, fuck them off also...
-	if (!IsLoggedIn(client)){
-		sendnumeric(client, ERR_FORBIDDENCHANNEL, channel->chname, "You must be logged in to join that channel.");
-		return ERR_NEEDREGGEDNICK;
-	}
-	
-	// if they're not connected securely, fuck. them. OFF. LMAO
-	if (!(client->umodes & UMODE_SECURE)){
-		sendnumeric(client, ERR_FORBIDDENCHANNEL, channel->chname, "You must be connected securely (TLS) to join this channel.");
-		return ERR_SECUREONLYCHAN;
-	}
-	
-	// we made it! \o/ let them join
-	return 0;
 }
 
 // copied and edited from third/showwwebirc by k4be lol
