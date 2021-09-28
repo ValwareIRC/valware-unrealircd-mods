@@ -267,9 +267,11 @@ CMD_OVERRIDE_FUNC(hideserv_override) {
 			if (buf[0] != '\0')
 				sendnumeric(client, RPL_WHOISCHANNELS, name, buf); 
 
-			if (!(IsULine(target) && !IsOper(client)) || target == client)
+			if (IsOper(client))
 				sendnumeric(client, RPL_WHOISSERVER, name, target->user->server,
 				    target->srvptr ? target->srvptr->info : "*Not On This Net*");
+			else
+				sendnumeric(client,RPL_WHOISSERVER, name, "*");
 
 			if (target->user->away)
 				sendnumeric(client, RPL_AWAY, name, target->user->away);
@@ -344,4 +346,5 @@ CMD_OVERRIDE_FUNC(hideserv_override) {
 			sendnumeric(client, ERR_NOSUCHNICK, nick);
 	}
 	sendnumeric(client, RPL_ENDOFWHOIS, querybuf);
+	
 }
