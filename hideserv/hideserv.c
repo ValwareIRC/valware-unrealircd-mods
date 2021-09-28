@@ -344,5 +344,4 @@ CMD_OVERRIDE_FUNC(hideserv_override) {
 			sendnumeric(client, ERR_NOSUCHNICK, nick);
 	}
 	sendnumeric(client, RPL_ENDOFWHOIS, querybuf);
-	CallCommandOverride(ovr, client, recv_mtags, parc, parv);
 }
