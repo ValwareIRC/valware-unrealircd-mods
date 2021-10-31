@@ -9,5 +9,6 @@ Syntax: /DELSWHOIS username
 
 This module needs to be loaded on all servers on the network
 
+Compatibility: UnrealIRCd 6.*
 
 License: GPLv3
