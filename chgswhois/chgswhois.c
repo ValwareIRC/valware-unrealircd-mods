@@ -47,7 +47,7 @@ ModuleHeader MOD_HEADER = {
 	"1.0",
 	"Provides command /CHGSWHOIS and /DELSWHOIS for priviledged IRCops to change a users \"special whois\" line.",
 	"Valware",
-	"unrealircd-6,
+	"unrealircd-6",
 };
 
 MOD_INIT() {
