@@ -88,15 +88,20 @@ CMD_FUNC(CHGSWHOIS) {
 		return;
 	}
 
-	else if (!(splooge = find_person(parv[1], NULL))) {
+	else if (!(splooge = find_user(parv[1], NULL))) {
 		sendnumeric(client, ERR_NOSUCHNICK, parv[1]);
 		return;
 	}
 	strlcpy(tag, client->name, sizeof(tag));
 	strlcpy(swhois, parv[2], sizeof(swhois));
-	sendto_snomask(SNO_EYES,"%s changed the SWHOIS of %s (%s@%s) to be '%s'", client->name, splooge->name, splooge->user->username, GetHost(splooge), parv[2]);
-	/* Logging ability added by XeRXeS */
-	ircd_log(LOG_CHGCMDS, "CHGSWHOIS: %s changed the SWHOIS of %s (%s@%s) to be '%s'", client->name, splooge->name, splooge->user->username, GetHost(splooge), parv[2]);
+
+
+	if (!IsULine(client))
+		unreal_log(ULOG_INFO, "chgcmds", "CHGSWHOIS_COMMAND", client,
+		           "CHGHOST: $client changed the special whois of $target.detail to be $new_swhois",
+		           log_data_string("change_type", "swhois"),
+		           log_data_string("new_swhois", parv[2]),
+		           log_data_client("target", splooge));
 	
 	// Find and delete old swhois line
 	
@@ -124,14 +129,17 @@ CMD_FUNC(DELSWHOIS) {
 		return;
 	}
 
-	else if (!(splooge = find_person(parv[1], NULL))) {
+	else if (!(splooge = find_user(parv[1], NULL))) {
 		sendnumeric(client, ERR_NOSUCHNICK, parv[1]);
 		return;
 	}
-	sendto_snomask(SNO_EYES,"*** DELSWHOIS: %s removed the SWHOIS from %s (%s@%s)", client->name, splooge->name, splooge->user->username, GetHost(splooge));
-	/* Logging ability added by XeRXeS */
-	ircd_log(LOG_CHGCMDS, "*** DELSWHOIS: %s removed the SWHOIS from %s (%s@%s)", client->name, splooge->name, splooge->user->username, GetHost(splooge));
-	
+
+	if (!IsULine(client))
+                unreal_log(ULOG_INFO, "chgcmds", "DELSWHOIS_COMMAND", client,
+                           "CHGHOST: $client deleted the special whois of $target.detail",
+                           log_data_string("change_type", "swhois"),
+                           log_data_client("target", splooge));
+
 	// Find and delete old swhois line
 	swhois_delete(splooge, "chgswhoislmao", "*", &me, NULL);
 	
