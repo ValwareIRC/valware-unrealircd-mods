@@ -98,10 +98,9 @@ CMD_FUNC(CHGSWHOIS) {
 
 	if (!IsULine(client))
 		unreal_log(ULOG_INFO, "chgcmds", "CHGSWHOIS_COMMAND", client,
-		           "CHGSWHOIS: $client changed the special whois of $target.detail to be $new_swhois",
-		           log_data_string("change_type", "swhois"),
-		           log_data_string("new_swhois", parv[2]),
-		           log_data_client("target", splooge));
+		           "CHGSWHOIS: $client changed the special whois of $target to be $new_swhois",
+		           log_data_client("target", splooge),
+		           log_data_string("new_swhois", parv[2]));
 	
 	// Find and delete old swhois line
 	
@@ -136,7 +135,7 @@ CMD_FUNC(DELSWHOIS) {
 
 	if (!IsULine(client))
                 unreal_log(ULOG_INFO, "chgcmds", "DELSWHOIS_COMMAND", client,
-                           "CHGSWHOIS: $client deleted the special whois of $target.detail",
+                           "CHGSWHOIS: $client deleted the special whois of $target",
                            log_data_string("change_type", "swhois"),
                            log_data_client("target", splooge));
 
