@@ -99,6 +99,7 @@ CMD_FUNC(CHGSWHOIS) {
 	if (!IsULine(client))
 		unreal_log(ULOG_INFO, "chgcmds", "CHGSWHOIS_COMMAND", client,
 		           "CHGSWHOIS: $client changed the special whois of $target to be $new_swhois",
+		           log_data_string("change_type", "swhois"),
 		           log_data_client("target", splooge),
 		           log_data_string("new_swhois", parv[2]));
 	
