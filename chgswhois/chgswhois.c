@@ -136,7 +136,7 @@ CMD_FUNC(DELSWHOIS) {
 
 	if (!IsULine(client))
                 unreal_log(ULOG_INFO, "chgcmds", "DELSWHOIS_COMMAND", client,
-                           "CHGSWHOIS: $client deleted the special whois of $target",
+                           "CHGSWHOIS: $client deleted the special whois of $target.details",
                            log_data_string("change_type", "swhois"),
                            log_data_client("target", splooge));
 
