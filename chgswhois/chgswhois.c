@@ -13,7 +13,7 @@ License: GPLv3
 module {
 	documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/chgswhois/README.md";
 	troubleshooting "In case of problems, check the README or e-mail me at v.a.pond@outlook.com";
-	min-unrealircd-version "5.*";
+	min-unrealircd-version "6.*";
 	
 	post-install-text {
 		"The module is installed, now all you need to do is add a 'loadmodule' line to your config file:";
