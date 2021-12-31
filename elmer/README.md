@@ -5,6 +5,7 @@ My port of AngryWolf's module for Unreal3.2 of the same name
 replaces 'r' and 'l' with 'w' on a victims output:
 
 Syntax: /ELMER Valware
+
 Syntax: /DELMER Valware
 
 `<Valware> I'm hunting rabbits, be very very quiet.`
