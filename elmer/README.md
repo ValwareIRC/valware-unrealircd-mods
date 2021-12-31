@@ -1,5 +1,7 @@
 Force a user to speak like Elmer;
 
+My port of AngryWolf's module for Unreal3.2 of the same name
+
 replaces 'r' and 'l' with 'w':
 
 `<Valware> I'm hunting rabbits, be very very quiet.`
