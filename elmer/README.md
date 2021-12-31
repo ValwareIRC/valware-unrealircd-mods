@@ -16,4 +16,4 @@ Requires oper
 
 Cannot be set on other opers
 
-[[https://c.tenor.com/L9LxlrJudBEAAAAC/elmer-fudd-hunter.gif]]
+[[elmer.gif]]
