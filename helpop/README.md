@@ -4,8 +4,6 @@ This module provides the following:
   - Channel mode g (Only HelpOp can join)
   - Command: /helpoper   - this sends a server notice to other users who have usermode +h if the user also have +h
   (Syntax: /helpoper your message to send)
-  - Command: /report     - this sends server notice from a user with no usermode +h to users who have usermode +h
-  (Syntax: /report your message to send)
   - SWHOIS line marking +h "is available for help"
  
  
