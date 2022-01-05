@@ -154,10 +154,10 @@ CMD_FUNC(NICKLOCK)
 		return;
 	}
 	strlcpy(oldnickname, target->name, sizeof(oldnickname));
-	target->lastnick = TStime();
 
 	if (strcmp(target->name,nickname))
 	{
+		target->lastnick = TStime();
 		new_message(target, NULL, &mtags);
 		RunHook(HOOKTYPE_LOCAL_NICKCHANGE, target, mtags, nickname);
 		sendto_local_common_channels(target, target, 0, mtags, ":%s NICK :%s", target->name, nickname);
