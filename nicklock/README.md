@@ -1,4 +1,4 @@
-Forces a user to retain a username until the end of the session.
+Forces a user to retain a nickname until the end of their session.
 
 Or, until it is removed.
 
