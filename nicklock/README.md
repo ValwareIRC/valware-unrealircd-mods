@@ -4,7 +4,7 @@ Or, until it is removed.
 
 
   -------------------------------------------------
-__Commands__
+__Commands:__
 
   ___NICKLOCK___
   
