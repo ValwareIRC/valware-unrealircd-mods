@@ -70,7 +70,10 @@ MOD_INIT() {
 	mreq.type = MODDATATYPE_CLIENT;
 	nicklock_md = ModDataAdd(modinfo->handle, mreq);
 	if (!nicklock_md)
-		abort();
+	{
+		config_error("could not register nicklock moddata");
+		return MOD_FAILED;
+	}
 	
 	CommandAdd(modinfo->handle, NLOCK, NICKLOCK, 2, CMD_OPER);
 	CommandAdd(modinfo->handle, RNLOCK, NICKUNLOCK, 1, CMD_OPER);
@@ -114,6 +117,9 @@ CMD_FUNC(NICKLOCK)
 	char oldnickname[NICKLEN+1];
 	MessageTag *mtags = NULL;
 	
+	if (hunt_server(client, NULL, "NICKLOCK", 1, parc, parv) != HUNTED_ISME)
+		return;
+	
 	if (!IsOper(client))
 	{
 		sendnumeric(client, ERR_NOPRIVILEGES);
@@ -124,7 +130,7 @@ CMD_FUNC(NICKLOCK)
 		sendnumeric(client, ERR_NEEDMOREPARAMS, NLOCK);
 		return;
 	}
-	sendnotice(client,"%s",parv[1]);
+    
 	if (!(target = find_user(parv[1], NULL))) {
 		sendnumeric(client, ERR_NOSUCHNICK, parv[1]);
 		return;
@@ -139,7 +145,6 @@ CMD_FUNC(NICKLOCK)
 		sendnotice(client,"%s is already nicklocked.",target->name);
 		return;
 	}
-	
 	/* actually do the nick lock */
 	if (!parv[2])
 		parv[2] = target->name;
@@ -188,6 +193,8 @@ CMD_FUNC(NICKUNLOCK)
 {
 	Client *target;
 	
+	if (hunt_server(client, NULL, "NICKUNLOCK", 1, parc, parv) != HUNTED_ISME)
+		return;
 
 	if (!IsOper(client))
 	{
@@ -207,11 +214,13 @@ CMD_FUNC(NICKUNLOCK)
 		sendnumeric(client, ERR_NOPRIVILEGES);
 		return;	
 	}
+	
 	if (!IsNickLock(target))
 	{
 		sendnotice(client,"%s was not nicklocked anyway.",target->name);
 		return;
 	}
+	
 	ClearNickLock(target);
 	sendnotice(client,"%s is no longer nicklocked.",target->name);
 	unreal_log(ULOG_INFO, "nick", "NICK_IS_LOCKED", target,
