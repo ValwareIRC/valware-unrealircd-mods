@@ -8,7 +8,7 @@ __Commands:__
 
   ___NICKLOCK___
   
-  `NICKLOCK <nick> (<new nick>)`
+  `NICKLOCK <nick> [<new nick>]`
 
 
   Example 1:
