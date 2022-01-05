@@ -5,7 +5,7 @@ Or, until it is removed.
 
 __Commands__
 
-  NICKLOCK
+  ___NICKLOCK___
   
   `NICKLOCK <nick> (<new nick>)`
 
@@ -19,9 +19,9 @@ __Commands__
 
   `NICKLOCK Valware Lolware`
   
+  -------------------------------------------------
   
-  
-  NICKUNLOCK
+  ___NICKUNLOCK___
   
   `NICKUNLOCK <nick>`
   
