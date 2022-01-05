@@ -28,4 +28,4 @@ __Commands:__
   
   Example:
   
-  `NICUNLOCK Valware`
+  `NICKUNLOCK Valware`
