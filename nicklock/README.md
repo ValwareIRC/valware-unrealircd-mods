@@ -3,6 +3,7 @@ Forces a user to retain a username until the end of the session.
 Or, until it is removed.
 
 
+  -------------------------------------------------
 __Commands__
 
   ___NICKLOCK___
