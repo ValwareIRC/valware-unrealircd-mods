@@ -112,7 +112,7 @@ CMD_FUNC(ADDELMER)
 {
 	Client *target;
 	
-	if (hunt_server(target, NULL, "ELMER", 1, parc, parv) != HUNTED_ISME)
+	if (hunt_server(client, NULL, "ELMER", 1, parc, parv) != HUNTED_ISME)
 		return;
 	
 	if (!IsOper(client))
@@ -146,8 +146,8 @@ CMD_FUNC(ADDELMER)
 CMD_FUNC(DELELMER)
 {
 	Client *target;
-
-	if (hunt_server(target, NULL, "DELMER", 1, parc, parv) != HUNTED_ISME)
+	
+	if (hunt_server(client, NULL, "DELMER", 1, parc, parv) != HUNTED_ISME)
 		return;
 
 	if (!IsOper(client))
@@ -168,6 +168,7 @@ CMD_FUNC(DELELMER)
 		sendnumeric(client, ERR_NOPRIVILEGES);
 		return;	
 	}
+	
 	if (!IsElmer(target))
 	{
 		sendnotice(client,"%s was not talking like Elmer anyway.",target->name);
