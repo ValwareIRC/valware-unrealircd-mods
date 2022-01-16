@@ -7,10 +7,10 @@ CMD_FUNC(ayyy);
 
 ModuleHeader MOD_HEADER = {
 	"third/ayyy", 
-	"1.0",
+	"1.1",
 	"may as well kys lmao", 
 	"Valware",
-	"unrealircd-5",
+	"unrealircd-6",
 };
 
 MOD_INIT() {
