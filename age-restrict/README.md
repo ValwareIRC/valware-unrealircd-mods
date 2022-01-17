@@ -1,17 +1,23 @@
-__Age restriction module__ (non-free)
+___Age restriction module___ (non-free)
+
 
 Adds the ability to set an AGE on a user. This age will show in their whois.
+
 
 Adds the ability to set a MINIMUM and MAXIMUM age for a channel.
 
 
+
 __DOES NOT__
+
+
 Does not provide any age verification in any way.
 
 
 This module only provides you with the ability to set someones age and age-restrict channels,
 
 should you somehow already have this information from the user beforehand (i.e. from a bot or services)
+
 
 
 __Provides commands:__
