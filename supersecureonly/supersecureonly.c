@@ -1,5 +1,6 @@
 /*
   Licence: GPLv3
+  <abandoned due to theft>
 */
 /*** <<<MODULE MANAGER START>>>
 module
