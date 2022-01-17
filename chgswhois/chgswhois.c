@@ -8,7 +8,7 @@ Syntax: CHGSWHOIS username is a bastardó
 This module needs to be loaded on all servers on the network
 
 License: GPLv3
-Copyright Ⓒ 2021 Valerie Pond
+Copyright Ⓒ 2022 Valerie Pond
 */
 /*** <<<MODULE MANAGER START>>>
 module {
