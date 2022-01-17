@@ -1,5 +1,7 @@
 /*
   Licence: GPLv3
+  Copyright Ⓒ 2021 Valerie Pond
+  
   Provides "helpop" by Valware :D
   usermode h (helpop) (settable by IRCops only)
   channelmode g (helpop-only)
