@@ -4,7 +4,7 @@ ___Age restriction module___ (non-free)
 Adds the ability to set an AGE on a user. This age will show in their whois.
 
 
-Adds the ability to set a MINIMUM and MAXIMUM age for a channel.
+Adds the ability to set a MINIMUM age for a channel (18+, 25+, etc)
 
 
 
@@ -27,7 +27,7 @@ __Provides commands:__
 `/DELAGE <user>`
 
 
-`/CHAGE <min|max> <#channel> <age>`
+`/CHAGE <#channel> <minimum age>`
 
 
 
