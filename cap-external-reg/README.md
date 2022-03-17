@@ -12,4 +12,6 @@ Usage (Services only):
 
 [See the related github issue](https://github.com/ircv3/ircv3-ideas/issues/89)
 
+[mIRC concept code](https://github.com/ValwareIRC/mIRC-scripts/cap-external-reg/)
+
 ![](https://valware.uk/wp-content/uploads/2022/03/Screenshot-from-2022-03-17-13-34-22.png)
