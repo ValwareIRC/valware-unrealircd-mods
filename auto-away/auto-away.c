@@ -17,7 +17,7 @@ module
                 "loadmodule \"third/auto-away\";";
 				"Then you specify the time and reason values in the config Here's the defaults to get you started:";
 				"auto-away {";
-				"	time 1m;";
+				"	time 2h;";
 				"	reason \"Idle.\";";
 				"}";
                 "And /REHASH the IRCd.";
