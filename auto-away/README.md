@@ -1,4 +1,4 @@
-##Warning: don't use unless you want your network to look like a deserted wasteland and away messages everywhere -.-
+## Warning: don't use unless you want your network to look like a deserted wasteland and away messages everywhere -.-
 
 This module lets you automate marking your users as `AWAY` based on their idle time.
 
