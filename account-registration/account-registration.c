@@ -196,7 +196,8 @@ CMD_FUNC(cmd_register)
 		sendto_one(client, NULL, "FAIL REGISTER NEED_NICK * :Your desired account name must match your nick");
 		return;
 	}
-
+	else
+		strcpy(nick,parv[1]);
 	/* basic checking, let services do the real checks and go from there */
 	if (!strcmp(parv[2],"*") && has_reg_key(server, "email-required"))
 	{
@@ -215,17 +216,22 @@ CMD_FUNC(cmd_register)
 		sendto_one(client, NULL, "FAIL REGISTER BAD_ACCOUNT_NAME :Message too long");
 		return;
 	}
-
+	if (!do_nick_name(nick))
+	{
+		sendto_one(client, NULL, "FAIL REGISTER BAD_ACCOUNT_NAME :Erroneous nick");
+		return;
+	}
 	/* get our registration server */
 	if (*ARUSER(client)->registrar)
 		agent_p = find_client(ARUSER(client)->registrar, NULL);
 
 	/* cReDeMtIaLs */
 	const char *addr = BadPtr(client->ip) ? "0" : client->ip;
-	const char *account = strlen(nick) ? nick : parv[1];
+	const char *account = nick;
 	const char *email = parv[2];
 	char p[150] = "\0";
 	int i;
+
 
 	/* jam their password into a single thing lmao */
 	for (i = 3; i < parc && !BadPtr(parv[i]); i++)
