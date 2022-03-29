@@ -53,6 +53,7 @@ struct RegServ {
 };
 
 ModDataInfo *accreg_md = NULL;
+static int abort_accreg(Client *client);
 void regkeylist_free(ModData *m);
 const char *regkeylist_serialize(ModData *m);
 void regkeylist_unserialize(const char *str, ModData *m);
@@ -139,9 +140,9 @@ CMD_FUNC(cmd_registration)
 			ARUSER(target)->accreg_complete++;
 			sendto_one(target, NULL, "%s SUCCESS %s", cmd, txt);
 		}
-		else if (*parv[5] == "A")
+		else if (*parv[5] == 'A')
 		{
-			accreg_abort(client);
+			abort_accreg(client);
 			return;
 		}
 	
