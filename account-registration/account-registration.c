@@ -199,7 +199,7 @@ CMD_FUNC(cmd_register)
 	/* if not, and if we don't allow custom account names, reject them */
 	else if (!has_reg_key(server, "custom-account-name"))
 	{
-		sendto_one(client, NULL, "FAIL REGISTER NEED_NICK * :Your desired account name must match your nick");
+		sendto_one(client, NULL, "FAIL REGISTER ACCOUNT_NAME_MUST_BE_NICK * :Your desired account name must match your nick");
 		return;
 	}
 	else
@@ -298,7 +298,7 @@ CMD_FUNC(cmd_verify)
 	/* if the client is trying to register in the connection phase but we don't allow it */
 	if (!has_reg_key(server, "before-connect") && !IsRegistered(client))
 	{
-		sendto_one(client, NULL, "FAIL VERIFY COMPLETE_CONNECTION_REQUIRED :You must connect before you may use REGISTER");
+		sendto_one(client, NULL, "FAIL VERIFY COMPLETE_CONNECTION_REQUIRED :You must connect before you may use VERIFY");
 		return;
 	}
 	
