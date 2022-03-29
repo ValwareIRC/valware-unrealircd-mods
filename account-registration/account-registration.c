@@ -139,6 +139,11 @@ CMD_FUNC(cmd_registration)
 			ARUSER(target)->accreg_complete++;
 			sendto_one(target, NULL, "%s SUCCESS %s", cmd, txt);
 		}
+		else if (*parv[5] == "A")
+		{
+			accreg_abort(client);
+			return;
+		}
 	
 		return;
 	}
@@ -296,6 +301,11 @@ CMD_FUNC(cmd_verify)
 		return;
 	}
 	
+	if (!do_nick_name(nick))
+	{
+		sendto_one(client, NULL, "FAIL REGISTER BAD_ACCOUNT_NAME :Erroneous account name");
+		return;
+	}
 	/* invalidity checking */
 	if ((parv[1][0] == ':') || strchr(parv[1], ' '))
 	{
