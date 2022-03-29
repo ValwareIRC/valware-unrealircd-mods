@@ -218,7 +218,7 @@ CMD_FUNC(cmd_register)
 	}
 	if (!do_nick_name(nick))
 	{
-		sendto_one(client, NULL, "FAIL REGISTER BAD_ACCOUNT_NAME :Erroneous nick");
+		sendto_one(client, NULL, "FAIL REGISTER BAD_ACCOUNT_NAME :Erroneous account name");
 		return;
 	}
 	/* get our registration server */
