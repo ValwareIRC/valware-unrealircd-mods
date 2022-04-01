@@ -34,6 +34,10 @@ The `<Y>` token can be either one of:
 
 `S` which means 'Success'.
 
+`W` which means 'Warn'.
+
+`N` which means 'Note'.
+
 <br>
 
 The `<Data X>` tokens differ depending on who is sending what. For example if it's coming from a user using `R R` then:
