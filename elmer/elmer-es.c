@@ -185,21 +185,21 @@ static char *convert_to_elmer(char *line)
 {
 	char *p;
 	for (p = line; *p; p++)
-		switch(*p)
-		{
-			case 's':
-				*p = 'f';
-				break;
-      case 'S':
-        *p = 'F';
-        break;
-      case 't':
-        *p = 'd';
-        break;
-      case 'T':
-        *p = 'D';
-        break;
-		}
+	switch(*p)
+	{
+		case 's':
+		*p = 'f';
+		break;
+		case 'S':
+		*p = 'F';
+		break;
+		case 't':
+		*p = 'd';
+		break;
+		case 'T':
+		*p = 'D';
+		break;
+	}
 
 	return line;
 }
