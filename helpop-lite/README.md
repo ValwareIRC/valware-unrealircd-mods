@@ -1,3 +1,8 @@
+## [DEPRECATED]
+### This module has been moved to `helpop`. This is because the non-lite version contained a `report` command, which has now been covered by another module, and if you would like to continue using `/report`, I recommend Gottem's module found below.
+
+- [Gottem's REPORT module MD](https://gitgud.malvager.net/Wazakindjes/unrealircd_mods/src/master/man/report.md)
+
 "Lite" version of my helpop module.
 
 
