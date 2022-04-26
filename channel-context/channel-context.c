@@ -72,6 +72,10 @@ int chancontext_mtag_is_ok(Client *client, const char *name, const char *value)
 	if (BadPtr(value))
 		return 0;
 
+	/* if the channel doesn't exist, gtfo */
+	if (!find_channel(value))
+		return 0;
+
 	return 1;
 }
 
