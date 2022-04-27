@@ -1,4 +1,4 @@
-# Account Registration
+# Account Registration (Spec is WIP)
 
 
 This module provides account registration functionality for [UnrealIRCd](https://unrealircd.org).
