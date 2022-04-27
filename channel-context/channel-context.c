@@ -3,10 +3,6 @@
   Copyright Ⓒ 2022 Valerie Pond
   Channel Context
 
-  Spec authors:
-  delthas
-  delthas@dille.cc
-
   Sends a message tag with the channel for which the message itself is associated with
   i.e. if someone types in a channel "!help", the bot will reply in private to the user
   but with the channel sent as a mtag, so that the user may know which channel the response
@@ -22,7 +18,7 @@ module
 		post-install-text {
 				"The module is installed. Now all you need to do is add a loadmodule line:";
 				"loadmodule \"third/channel-context\";";
-				"And /REHASH the IRCd.";
+				"You need to restart your server for this to show up in CLIENTTAGDENY";
 				"The module does not need any other configuration.";
 		}
 }
@@ -35,7 +31,7 @@ module
 ModuleHeader MOD_HEADER
   = {
 	"third/channel-context",
-	"0.1",
+	"0.2",
 	"Channel Context (IRCv3)",
 	"Valware",
 	"unrealircd-6",
@@ -76,8 +72,7 @@ int chancontext_mtag_is_ok(Client *client, const char *name, const char *value)
 	if (BadPtr(value))
 		return 0;
 
-	/* if the channel doesn't exist, gtfo */
-	if (!find_channel(value))
+	if (!find_channel(value) || !strlen(value))
 		return 0;
 
 	return 1;
