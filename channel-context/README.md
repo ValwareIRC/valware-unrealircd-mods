@@ -1,4 +1,4 @@
-## Channel Context
+## Channel Context (Spec is WIP)
 
 Sends a message tag with the channel for which the message itself is associated with
   i.e. if someone types in a channel "!help", the bot will reply in private to the user
