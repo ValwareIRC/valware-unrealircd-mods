@@ -1,6 +1,6 @@
 # Account Registration (Spec is WIP)
 
-This module provides account registration functionality for [UnrealIRCd](https://unrealircd.org). This module is the IRCd-side of the registration mechanism. This module requires compatible services to run.
+This module provides account registration functionality for [UnrealIRCd](https://unrealircd.org). This module is the IRCd-side of the registration mechanism. This module requires compatible services to function. If you do not have compatible services (listed below) then this module will not work.
 
 For commands and syntax, please refer to the [IRCv3 spec for account registration](https://ircv3.net/specs/extensions/account-registration)
 
