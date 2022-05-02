@@ -1,12 +1,13 @@
 # Account Registration (Spec is WIP)
 
-Requires compatible Services to work.
-
 This module provides account registration functionality for [UnrealIRCd](https://unrealircd.org).
 
 For commands and syntax, please refer to the [IRCv3 spec for account registration](https://ircv3.net/specs/extensions/account-registration)
 
 Please note: If you wish to use this module, you must first remove the alias for 'register' in conf/aliases.conf
+
+# Known Implemenations
+- [ ] DALEK IRC Services (ETA June)
 
 
 ## Server2Server
