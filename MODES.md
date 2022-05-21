@@ -6,5 +6,5 @@ Below is a list of usermodes and channelmodes so that you may know which are fre
 
 
 
-| Channelmode | Type | Source |
+| Chanmode | Type | Source |
 |------|------|--------|
