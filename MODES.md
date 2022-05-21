@@ -63,7 +63,7 @@ D | DelayJoin | Taken | Source
 E | | Free |
 F | | Free |
 G | Spamfilter | Taken | Source
-H | | Free |
+H | Chan History | Taken | Source
 I | Invitation | Taken | Source
 J | Join Mute | Taken | Third-Party
 K | No /KNOCK | Taken | Source
