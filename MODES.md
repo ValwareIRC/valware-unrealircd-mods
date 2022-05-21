@@ -85,7 +85,7 @@ Z | Is SecureOnly | Taken | Source
 a | Chan Admin | Taken | Source
 b | Chan Ban | Taken | Source
 c | Block Colour | Taken | Source
-d | | Free |
+d | DelayJoin | Taken | Source
 e | Except | Taken | Source
 f | Flood Mode | Taken | Source
 g | Helpop Only | Taken | Third-Party
