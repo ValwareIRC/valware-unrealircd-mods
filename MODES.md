@@ -88,7 +88,7 @@ c | Block Colour | Taken | Source
 d | | Free |
 e | Except | Taken | Source
 f | Flood Mode | Taken | Source
-g | | Free |
+g | Helpop Only | Taken | Third-Party
 h | Halfop | Taken | Source
 i | Invite | Taken | Source
 j | Kick Join Delay | Taken | Third-Party
