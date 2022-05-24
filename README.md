@@ -2,7 +2,7 @@
 
 Welcome to my module repository.
 
-All of my up-to-date/useful modules are actively contributed to [`unrealircd/unrealircd-contrib`](https://github.com/unrealircd/unrealircd-contrib), and so you can download them as usual using `./unrealircd module install third/modulename` without having to worry about including this module in the `modules.sources.list`.
+All of my up-to-date/useful modules are actively contributed to [`unrealircd/unrealircd-contrib`](https://github.com/unrealircd/unrealircd-contrib), and so you can download them as usual using `./unrealircd module install third/modulename` without having to worry about including this repo in the `modules.sources.list`.
 
 Any modules you see here that are not listed are because they are useless (like `ayyy.c` which is just a fancy quit message really, and `cap-external-reg` which is not compatible with anything (yet) and so is not expected to actually work on your server without making something to work with it.
 
