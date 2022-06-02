@@ -38,7 +38,6 @@ module {
 int auditorium_chmode_isok(Client *client, Channel *channel, char mode, const char *para, int checkt, int what);
 int auditorium_hook_visibleinchan(Client *target, Channel *channel);
 int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *lp, const char **text, const char **errmsg, SendType sendtype);
-Client *find_chasing_no_client(const char *user, int *chasing);
 
 #define CHMODE_FLAG 'u' // Good ol' +u ;];]
 #define IsAudit(x) ((x) && has_channel_mode((x), CHMODE_FLAG))
@@ -150,7 +149,6 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 			char token[2] = " ";
 			Client *user;
 			char *tok;
-			int chasing = 0;
 			tok = strtok(txt,token);
 			
 
