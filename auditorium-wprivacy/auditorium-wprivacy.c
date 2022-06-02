@@ -38,6 +38,7 @@ module {
 int auditorium_chmode_isok(Client *client, Channel *channel, char mode, const char *para, int checkt, int what);
 int auditorium_hook_visibleinchan(Client *target, Channel *channel);
 int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *lp, const char **text, const char **errmsg, SendType sendtype);
+Client *find_chasing_no_client(const char *user, int *chasing);
 
 #define CHMODE_FLAG 'u' // Good ol' +u ;];]
 #define IsAudit(x) ((x) && has_channel_mode((x), CHMODE_FLAG))
@@ -139,7 +140,7 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 
 		// ..."relay" the message to +o etc only
 		new_message(client, NULL, &mtags);
-		sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+		sendto_channel(channel, client, client, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
 
 		/* if the user has channel access then we will do a check to see if the first word is a user on the channel, and show it only to them */
 		if (chanaccess) {
@@ -149,15 +150,18 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 			char token[2] = " ";
 			Client *user;
 			char *tok;
-		
+			int chasing = 0;
 			tok = strtok(txt,token);
+			
 
 			/* if the string contains ':' or ',' then trim it by one and check if it's an existing user */
 			if (strchr(tok,':') || strchr(tok,','))
 				strlcpy(tok,tok,strlen(tok));
+			user = find_user(tok, NULL);
+			if (!user)
+				user = get_history(tok, (long)KILLCHASETIMELIMIT);
 
-			if ((user = find_user(tok, NULL))) // search
-				if (IsMember(user,channel) && !check_channel_access(user, channel, "oaq")) // if they're on that channel and don't have access (wouldn't see the message)
+			if (user && user != client && IsMember(user,channel) && !check_channel_access(user, channel, "oaq")) // if they're on that channel and don't have access (wouldn't see the message)
 					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text); // if it's for them, show them
 			
 		}
