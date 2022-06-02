@@ -134,14 +134,15 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 	{
 		int chanaccess = check_channel_access(client, channel, "oaq");
 		
-		
+		if (is_banned(client, channel, BANCHK_MSG, text, NULL)) // In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
+			return HOOK_CONTINUE;
 
 		// ..."relay" the message to +o etc only
 		new_message(client, NULL, &mtags);
 		sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
-	
+
 		/* if the user has channel access then we will do a check to see if the first word is a user on the channel, and show it only to them */
-		if (chanaccess) {
+		else if (chanaccess) {
 							
 			char txt[NICKLEN + 1];
 			strlcpy(txt, *text, sizeof(txt));
@@ -160,8 +161,6 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text); // if it's for them, show them
 			
 		}
-		else if (is_banned(client, channel, BANCHK_MSG, text, NULL)) // In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
-			return HOOK_CONTINUE;
 
 		*text = NULL;
 		free_message_tags(mtags);	
