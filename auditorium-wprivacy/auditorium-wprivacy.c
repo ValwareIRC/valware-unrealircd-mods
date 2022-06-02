@@ -130,17 +130,17 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 	int notice = (sendtype == SEND_TYPE_NOTICE);
 	MessageTag *mtags = NULL;
 
-	if(IsAudit(channel) && IsUser(client) && !IsULine(client)) // If channel has +u and you don't have +o or higher...
+	if(IsAudit(channel) && IsUser(client) && !IsULine(client)) // If channel has +u and user is not a uline
 	{
 		int chanaccess = check_channel_access(client, channel, "oaq");
-		// In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
-		if(is_banned(client, channel, BANCHK_MSG, text, NULL))
-			return HOOK_CONTINUE;
+		
+		
 
 		// ..."relay" the message to +o etc only
 		new_message(client, NULL, &mtags);
 		sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
 	
+		/* if the user has channel access then we will do a check to see if the first word is a user on the channel, and show it only to them */
 		if (chanaccess) {
 							
 			char txt[NICKLEN + 1];
@@ -150,13 +150,19 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 			char *tok;
 		
 			tok = strtok(txt,token);
+
+			/* if the string contains ':' or ',' then trim it by one and check if it's an existing user */
 			if (strchr(tok,':') || strchr(tok,','))
 				strlcpy(tok,tok,strlen(tok));
-			if ((user = find_user(tok, NULL)))
-				if (IsMember(user,channel) && !check_channel_access(user, channel, "oaq"))
-					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+
+			if ((user = find_user(tok, NULL))) // search
+				if (IsMember(user,channel) && !check_channel_access(user, channel, "oaq")) // if they're on that channel and don't have access (wouldn't see the message)
+					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text); // if it's for them, show them
 			
 		}
+		else if (is_banned(client, channel, BANCHK_MSG, text, NULL)) // In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
+			return HOOK_CONTINUE;
+
 		*text = NULL;
 		free_message_tags(mtags);	
 	}
