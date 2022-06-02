@@ -130,40 +130,41 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 	int notice = (sendtype == SEND_TYPE_NOTICE);
 	MessageTag *mtags = NULL;
 
-	if(IsAudit(channel) && IsUser(client) && !IsULine(client)
-	   && !check_channel_access(client, channel, "oaq") ) // If channel has +u and you don't have +o or higher...
+	if(IsAudit(channel) && IsUser(client) && !IsULine(client)) // If channel has +u 
 	{
-		// In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
-		if(is_banned(client, channel, BANCHK_MSG, text, NULL))
-			return HOOK_CONTINUE;
+		int chanaccess = check_channel_access(client, channel, "oaq"); // if you're not an op
+		if (!chanaccess)
+		{
+			// In case the user is banned just keep processing the hooks as usual, since one of them will finally interrupt and (prolly) emit a message =]
+			if(is_banned(client, channel, BANCHK_MSG, text, NULL))
+				return HOOK_CONTINUE;
 
-		// ..."relay" the message to +o etc only
-		new_message(client, NULL, &mtags);
-		sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
-		*text = NULL;
-		free_message_tags(mtags);
-		// Can't return HOOK_DENY here cuz Unreal might abort() in that case :D
-	}
-	else if (IsAudit(channel) && IsUser(client) && !IsULine(client)
-		 && check_channel_access(client, channel, "oaq")) // User has permission to say stuff but we only show to who it was intended for
-	{
-		new_message(client, NULL, &mtags);
-		sendto_channel(channel, client, client, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+			// ..."relay" the message to +o etc only
+			new_message(client, NULL, &mtags);
+			sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+			*text = NULL;
+			free_message_tags(mtags);
+			// Can't return HOOK_DENY here cuz Unreal might abort() in that case :D
+		}
+		else { // you're an op, only show to other ops and the non-op user where the message was meant
+			new_message(client, NULL, &mtags);
+			sendto_channel(channel, client, client, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+			
+			char txt[NICKLEN + 1];
+			strlcpy(txt, *text, sizeof(txt));
+			char token[2] = " ";
+			Client *user;
+			char *tok;
 		
-		char txt[NICKLEN + 1];
-		strlcpy(txt, *text, sizeof(txt));
-		char token[2] = " ";
-		Client *user;
-		char *tok;
-	
-		tok = strtok(txt,token);
-		if (strchr(tok,':') || strchr(tok,','))
-			strlcpy(tok,tok,strlen(tok));
-		if ((user = find_user(tok, NULL)))
-			if (IsMember(user,channel) && !check_channel_access(user, channel, "oaq"))
-				sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
-		*text = NULL;
-		free_message_tags(mtags);
+			tok = strtok(txt,token);
+			if (strchr(tok,':') || strchr(tok,','))
+				strlcpy(tok,tok,strlen(tok));
+			if ((user = find_user(tok, NULL)))
+				if (IsMember(user,channel) && !check_channel_access(user, channel, "oaq"))
+					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
+			*text = NULL;
+			free_message_tags(mtags);
+		}
 	}
 	
 	return HOOK_CONTINUE;
