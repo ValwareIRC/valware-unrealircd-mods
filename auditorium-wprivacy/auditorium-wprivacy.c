@@ -142,7 +142,7 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 		sendto_channel(channel, client, NULL, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
 
 		/* if the user has channel access then we will do a check to see if the first word is a user on the channel, and show it only to them */
-		else if (chanaccess) {
+		if (chanaccess) {
 							
 			char txt[NICKLEN + 1];
 			strlcpy(txt, *text, sizeof(txt));
