@@ -145,7 +145,7 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 		if (chanaccess) {
 							
 			char txt[NICKLEN + 1];
-			strlcpy(txt, *text, sizeof(txt));
+			strlcpy(txt, StripControlCodes(*text), sizeof(txt));
 			char token[2] = " ";
 			Client *user;
 			char *tok;
