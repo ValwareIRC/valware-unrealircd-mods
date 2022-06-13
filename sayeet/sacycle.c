@@ -41,7 +41,7 @@ CMD_FUNC(yeetus);
 
 ModuleHeader MOD_HEADER = {
 	"third/sacycle",
-	"1.1",
+	"1.2",
 	"Force someone to part and rejoin a channel",
 	"Valware",
 	"unrealircd-6",
