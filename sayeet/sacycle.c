@@ -102,7 +102,7 @@ CMD_FUNC(yeetus){
 	{
 		if (++ntargets > maxtargets)
 		{
-			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "SACYCLE");
+			sendnumeric(client, ERR_TOOMANYTARGETS, name, maxtargets, "CYCLE");
 			break;
 		}
 		if (!(channel = find_channel(name)))
