@@ -121,7 +121,7 @@ CMD_FUNC(yeetus){
 
 		if (!(lp = find_membership_link(target->user->channel, channel)))
 		{
-			sendnumeric(client, ERR_USERNOTINCHANNEL, target->name, name);
+			sendnumeric(client, ERR_USERNOTINCHANNEL, name, target->name);
 			continue;
 		}
 		if (*jbuf)
