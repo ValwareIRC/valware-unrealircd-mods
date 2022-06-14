@@ -255,6 +255,8 @@ CMD_FUNC(ojoin)
         parv_stuff_lol[2] = 0;
         sendto_channel(chan, &me, NULL, NULL, 0, SEND_ALL, mtags, ":%s NOTICE %s :%s entering this channel on official network business.", me.name, chan->name, client->name);
         SetJoiningAsSop(client);
+        unreal_log(ULOG_INFO, "ojoin", "OJOIN_COMMAND", client, "OJOIN: $client used OJOIN to join $channel on official network business.",
+		   log_data_string("channel", chan->name));
         do_mode(chan, client, mtags, 3, parv_stuff_lol, 0, 0);
         safe_free(m0de);
        
