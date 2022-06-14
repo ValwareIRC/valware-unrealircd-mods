@@ -6,9 +6,12 @@ All of my up-to-date/useful modules are actively contributed to [`unrealircd/unr
 
 Any modules you see here that are not listed are because they are useless, like `ayyy.c` which is just a fancy quit message really, and `cap-external-reg` which is not compatible with anything (yet) and so is not expected to actually work on your server without making something to work with it.
 
-The only reasons the modules exist here is so that you have somewhere to make a Pull Request or Issue, should you notice any bugs or problems
+The only reasons the modules exist here is so that you have somewhere to make a Pull Request or Issue, should you notice any bugs or problems.
 
 If you are trying to use a module from here that already exists in the official third-party module repository, it's important to note that when you go to install it, UnrealIRCd will automatically upgrade it to the version that exists in the official repository. So you should not use modules from this repository.
+
+## Problems and Errors ##
+If you notice any errors, or if something is not working as it should, or even if you believe a port of any of my modules is missing something it had in a previous rendition, please do not hesitate to create an "Issue" at the top of this page. (Or a Pull Request if you're feeling generous 😄)
 
 ## Got a request? ##
 
