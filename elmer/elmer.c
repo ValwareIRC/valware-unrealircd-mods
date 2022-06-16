@@ -30,8 +30,8 @@ module
 #include "unrealircd.h"
 
 ModuleHeader MOD_HEADER = {
-	"third/elmer2",
-	"2",
+	"third/elmer",
+	"2.0",
 	"Make people talk like Elmer",
 	"Valware",
 	"unrealircd-6",
