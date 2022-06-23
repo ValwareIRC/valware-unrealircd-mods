@@ -40,7 +40,7 @@ Information:
 
 ### Español ###
 - Ahora mostrará ayuda cuando no especifique el parámetro, o si el parámetro es `-ayuda`
-- Ahora mostrará una lista de usuarios cuando el parámetro sea `-list` (solo operadores).
+- Ahora mostrará una lista de usuarios cuando el parámetro sea `-lista` (solo operadores).
 - Elimina el envío del comando elmer a otros servidores para tratarlo y utiliza [`MD`](https://www.unrealircd.org/docs/Dev:Module_Storage) en su lugar. Menos limpio para módulos desiguales por servidor con respecto a los casos en los que no se devuelve un mensaje de error al intentar `/ELMER` alguien en un servidor que no tiene `elmer.c` cargado, pero decidí que era un un poco demasiado desordenado en el soporte de servidores configurados incorrectamente y lo eliminó.
 - Ahora registra usando `unreal_log()` como una confirmación para los operadores que lo configuraron, sin embargo, como este aviso en realidad no se mostraría a un `/ELMER` no operativo, así que agregué un pequeño aviso solo para esto caso.
 
