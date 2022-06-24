@@ -63,7 +63,7 @@ static char *help_elmer[] = {
 	"***** Elmer *****",
 	"-",
 	"Obliga a otro usuario (o a ti mismo) a hablar como",
-	"Elmer Fudd. (Reemplaza 'r's y 'l's con 'w's)",
+	"Elmer Fudd. (Reemplaza 's's con 'f's y 't's con 'd's)",
 	"-",
 	"Syntax:",
 	"    /ELMER [-lista|-ayuda|<nick>]",
