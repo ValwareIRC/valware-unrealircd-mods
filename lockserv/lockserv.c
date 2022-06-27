@@ -1,5 +1,5 @@
 /*
-  Licence: GPLv3
+  Licence: GPLv3 or later
   Copyright Ⓒ 2022 Valerie Pond
   LockServ
   
