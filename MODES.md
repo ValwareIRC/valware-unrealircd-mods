@@ -80,7 +80,7 @@ U | | Free |
 V | No Invites | Taken | Source
 W | WebIRC only | Taken | Source
 X | | Free |
-Y | | Free |
+Y | Operator Join | Taken | Third-Party 
 Z | Is SecureOnly | Taken | Source
 a | Chan Admin | Taken | Source
 b | Chan Ban | Taken | Source
