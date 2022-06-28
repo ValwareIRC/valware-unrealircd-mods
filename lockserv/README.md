@@ -28,4 +28,4 @@ Lock the server that user 'Valware' is on:
 	/LOCKSERV Valware Server closed for spam.
 
 Unlock a server to resume allowing connections:
-	/UNLOCKSERV Lamer32
+	/UNLOCKSERV lol.valware.uk
