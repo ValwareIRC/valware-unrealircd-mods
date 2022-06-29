@@ -1,12 +1,21 @@
 # LockServ
 
-Lock a server; prohibit new connections to a particular server.
+- Lock a server; prohibit new connections to a particular server.
 
-Note: Unlike a G-Line this will prohibit use of SASL in addition to locking the server, but will allow viewing the reason, unlike Z-Line.
+
+Note: This is not a G-Line nor a Z-Line, it's completely separate. Unlike a G-Line this will prohibit use of SASL in addition to locking the server, protecting against bruteforce attacks, yet will allow viewing the reason, unlike Z-Line-over-TLS. In order to circumvent the prohibition (connect to the server while it's locked), you can give yourself a z-line ban exemption in the unrealircd config like so and it will allow you in (replacing the IP with your IP of course):
+```
+except ban {
+	mask { ip 192.168.*; }
+	type { zline; }
+}
+```
 
 Requires operclass permission `lockserv`.
 
 Can be split up into `lockserv { can_lock; can_unlock; }`
+
+
 
 ```
 Syntax:
