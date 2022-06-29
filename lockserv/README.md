@@ -1,9 +1,9 @@
 # LockServ
 
 - Lock a server; prohibit new connections to a particular server.
+- Disables use of "CAP" so a user who is not fully connected cannot SASL (protects from bruteforce attacks against a server)
 
-
-Note: This is not a G-Line nor a Z-Line, it's completely separate. Unlike a G-Line this will prohibit use of SASL in addition to locking the server, protecting against bruteforce attacks, yet will allow viewing the reason, unlike Z-Line-over-TLS.
+Note: This is not a G-Line nor a Z-Line, it's completely separate.
 
 ### Operclass Permissions ###
 Requires operclass permission `lockserv`. Alternatively you can allow someone to only lock a server but not unlock it, or the other way round. Here are some examples using the netadmin operclass:
