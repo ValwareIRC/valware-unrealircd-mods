@@ -96,7 +96,8 @@ MOD_INIT() {
 	mreq.free = drunk_free;
 	mreq.serialize = drunk_serialize;
 	mreq.unserialize = drunk_unserialize;
-	mreq.sync = 1;
+	mreq.sync = MODDATA_SYNC_EARLY;
+	mreq.remote_write = 1;
 	mreq.type = MODDATATYPE_CLIENT;
 	drunk_md = ModDataAdd(modinfo->handle, mreq);
 	if (!drunk_md)
@@ -201,7 +202,7 @@ CMD_FUNC(ADDDRUNK)
 		return;
 	}
 
-	SetDrunk(target);
+	moddata_client_set(target, "drunk", "1");
 	
 	unreal_log(ULOG_INFO, "drunk", "ADD_DRUNK", client, "$client has marked $target as 'Drunk'.",log_data_string("client", client->name),log_data_string("target", target->name));
 	return;
@@ -243,7 +244,8 @@ CMD_FUNC(DELDRUNK)
 	}
 		
 	unreal_log(ULOG_INFO, "drunk", "DEL_DRUNK", client, "$client has removed $target as 'Drunk'.",log_data_string("client", client->name),log_data_string("target", target->name));
-	ClearDrunk(target);
+	
+	moddata_client_set(target, "drunk", "0");
 	return;
 }
 
