@@ -53,7 +53,7 @@ Unlock a server to resume allowing connections:
 In order to get round the lock, the module will check for a z-line ban exemption. If you don't have one, you can add one in the unrealircd config like so and it will allow you in (replacing the IP with your IP of course):
 ```
 except ban {
-	mask { ip 192.168.*; }
+	mask { ip 12.342.567.89/16; }
 	type { zline; }
 }
 ```
