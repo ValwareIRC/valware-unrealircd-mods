@@ -1,39 +1,33 @@
 /*
-  Licence: GPLv3 or later
-  Copyright Ⓒ 2022 Valerie Pond
-  Channel Context
-
-  Sends a message tag with the channel for which the message itself is associated with
-  i.e. if someone types in a channel "!help", the bot will reply in private to the user
-  but with the channel sent as a mtag, so that the user may know which channel the response
-  is associated with
-*/
-/*** <<<MODULE MANAGER START>>>
-module
-{
-		documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/channel-context/README.md";
-		troubleshooting "In case of problems, documentation or e-mail me at v.a.pond@outlook.com";
-		min-unrealircd-version "6.*";
-		max-unrealircd-version "6.*";
-		post-install-text {
-				"The module is installed. Now all you need to do is add a loadmodule line:";
-				"loadmodule \"third/channel-context\";";
-				"You need to restart your server for this to show up in CLIENTTAGDENY";
-				"The module does not need any other configuration.";
-		}
-}
-*** <<<MODULE MANAGER END>>>
-*/
-
+ *   IRC - Internet Relay Chat, src/modules/channel-context.c
+ *   (C) 2022 Valware & The UnrealIRCd Team
+ *
+ *   See file AUTHORS in IRC package for additional names of
+ *   the programmers.
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 1, or (at your option)
+ *   any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
 
 #include "unrealircd.h"
 
 ModuleHeader MOD_HEADER
   = {
-	"third/channel-context",
-	"0.2",
+	"channel-context",
+	"1.0",
 	"Channel Context (IRCv3)",
-	"Valware",
+	"UnrealIRCd team",
 	"unrealircd-6",
 	};
 
@@ -44,7 +38,7 @@ MOD_INIT()
 {
 	MessageTagHandlerInfo mtag;
 
-	MARK_AS_GLOBAL_MODULE(modinfo);
+	MARK_AS_OFFICIAL_MODULE(modinfo);
 
 	memset(&mtag, 0, sizeof(mtag));
 	mtag.is_ok = chancontext_mtag_is_ok;
@@ -72,8 +66,15 @@ int chancontext_mtag_is_ok(Client *client, const char *name, const char *value)
 	if (BadPtr(value))
 		return 0;
 
-	if (!find_channel(value) || !strlen(value))
-		return 0;
+	/* Validate a bit further, but only for local users.. */
+	if (MyUser(client))
+	{
+		Channel *channel = find_channel(value);
+		if (!channel)
+			return 0;
+		if (!IsMember(client, channel))
+			return 0;
+	}
 
 	return 1;
 }
