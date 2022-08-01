@@ -232,7 +232,7 @@ CMD_FUNC(DELDRUNK)
 			return;
 		}	
 	}
-	else if (!operclient)
+	if (!operclient)
 	{
 		sendnumeric(client, ERR_NOPRIVILEGES);
 		return;	
