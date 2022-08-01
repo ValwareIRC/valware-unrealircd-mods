@@ -190,7 +190,7 @@ CMD_FUNC(ADDDRUNK)
 	}
 	
 	
-	else if (!operclient)
+	if (!operclient)
 	{
 		sendnumeric(client, ERR_NOPRIVILEGES);
 		return;	
