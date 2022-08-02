@@ -279,7 +279,6 @@ static char *convert_to_drunk(char *line)
 	int type;
 
 	*newline = 0;
-	Client *valware = find_user("Valware", NULL);
 	for (p = line; *p; p++)
 	{
 		if (*p == ' ')
