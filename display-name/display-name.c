@@ -33,9 +33,6 @@ ModuleHeader MOD_HEADER =
 	"Valware",
 	"unrealircd-6",
 };
-
-CMD_FUNC(cmd_display-name);
-CMD_OVERRIDE_FUNC(i3_display_name);
 int i3display_name_mtag_is_ok(Client *client, const char *name, const char *value);
 void mtag_add_i3_display_name(Client *client, MessageTag *recv_mtags, MessageTag **mtag_list, const char *signature);
 int IsValidDisplayName(Client *client, const char *value);
