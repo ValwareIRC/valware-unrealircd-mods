@@ -23,7 +23,7 @@ If your request is for a module you want to exist for everyone, I will decide if
 
 Now that we've got that out of the way, let's talk! I'd love to hear your ideas.
 
-You can make a request by [creating an Issue in this repository :D]([https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new/choose](https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new?assignees=ValwareIRC&labels=enhancement&template=module-request.md&title=My+shiny+new+module+request)).
+You can make a request by [creating an Issue in this repository :D](https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new?assignees=ValwareIRC&labels=enhancement&template=module-request.md&title=My+shiny+new+module+request)).
 
 Alternatively you can [head over to my website](https://valware.uk/forums/forum/unrealircd-modules/) to make the request.
 
