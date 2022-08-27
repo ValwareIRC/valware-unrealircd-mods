@@ -23,7 +23,7 @@ If your request is for a module you want to exist for everyone, I will decide if
 
 Now that we've got that out of the way, let's talk! I'd love to hear your ideas.
 
-You can make a request by creating an issue in this repository =]
+You can make a request by [creating an issue in this repository :D](https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new/choose)
 
 <br><br><br>
 
