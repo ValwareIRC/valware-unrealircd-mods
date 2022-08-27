@@ -11,7 +11,7 @@ The only reasons the modules exist here is so that you have somewhere to make a 
 If you are trying to use a module from here that already exists in the official third-party module repository, it's important to note that when you go to install it, UnrealIRCd will automatically upgrade it to the version that exists in the official repository. So you should not use modules from this repository.
 
 ## Problems and Errors ##
-If you notice any errors, or if something is not working as it should, or even if you believe a port of any of my modules is missing something it had in a previous rendition, please do not hesitate to create an "Issue" at the top of this page. (Or a Pull Request if you're feeling generous 😄)
+If you notice any errors, or if something is not working as it should, or even if you believe a port of any of my modules is missing something it had in a previous rendition, please do not hesitate to create an "Issue" at the top of this page. (Or a Pull Request if you're feeling generous)
 
 ## Got a request? ##
 
@@ -23,7 +23,7 @@ If your request is for a module you want to exist for everyone, I will decide if
 
 Now that we've got that out of the way, let's talk! I'd love to hear your ideas.
 
-You can make a request by [heading to my website and making a request](https://valware.uk/code-request/). I'd prefer that you filled out this form instead of messaging me over IRC about it, as things tend to get lost in the logs.
+You can make a request by creating an issue in this repository =]
 
 <br><br><br>
 
