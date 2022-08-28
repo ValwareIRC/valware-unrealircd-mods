@@ -25,6 +25,8 @@ T | Disable CTCP | Taken | Source
 U | | Free |
 V | | Free |
 W | WHOIS Notify | Taken | Source
+X | | Free |
+Y | | Free |
 Z | Secure Privmsg | Taken | Source
 a | | Free |
 b | | Free |
@@ -50,6 +52,7 @@ u | | Free |
 v | | Free |
 w | WallOps | Taken | Source
 x | Hostmask | Taken | Source
+y | | Free |
 z | Is Secure | Taken | Source
 
 
