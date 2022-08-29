@@ -18,7 +18,7 @@ M | | Free |
 N | No Invites | Taken | Source
 O | | Free |
 P | PM List | Taken | Third-Party
-Q | | Free |
+Q | No Kicks | Taken | Source
 R | Reg Only Msg | Taken | Source
 S | Services Bot | Taken | Source
 T | Disable CTCP | Taken | Source
