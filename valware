@@ -1,0 +1,68 @@
+#!/bin/sh
+
+### Use from your unrealircd source directory for MAXIMUM TURBO MODULE DOWNLODEZ
+### Usage:
+### ./valware <modname>
+### 
+### Example:
+### ./valware auditorium-wprivacy
+###
+### Will grab the module FROM my very repository!! and then it will turn it into
+### working machine soup.
+
+
+C='\033[1;35m'
+WRN='\02[\033[0;31mWARN\033[0m]\02'
+INF='[\02\033[0;32mINFO\033[0m]\02'
+FILE=$1
+MODDIR='src/modules/third/'
+if [ -d ${MODDIR} ]
+then
+	echo "$INF Running from UnrealIRCd directory, good"
+else
+	echo "$WRN You need to run this from your UnrealIRCd's source folder"
+	exit 0
+fi
+if [ $FILE ]
+then
+	echo "$INF Looking for $FILE"
+else
+	echo "$WRN Didn't specify a module name"
+	exit 0
+fi
+
+if [ -d "valware-unrealircd-mods" ]
+then
+    rm -rf "valware-unrealircd-mods"
+fi
+
+echo "$INF Downloading Valware's third party repository"
+git clone "https://github.com/ValwareIRC/valware-unrealircd-mods/" || echo "$WRN Couldn't download the repository."
+if [ -f valware-unrealircd-mods/${FILE}/${FILE}.c ]
+then
+    echo "$INF Found module ${FILE}, moving them to our UnrealIRCd source directory"
+    cp valware-unrealircd-mods/${FILE}/${FILE}.c $MODDIR
+
+    make && make install
+    if [ -f "${MODDIR}${FILE}.so" ]
+    then
+        echo "$INF All went well, removing downloaded modules repo..."
+        rm -rf "valware-unrealircd-mods" && echo "$INF Removed..." || echo "$WRN Couldn't delete for some reason!"
+        echo "$INF Defending from zombies..."
+        echo "$INF Having a quick coffee..."
+        echo "$INF Verifying we're not a robot...awkward"
+        echo "$INF Crying to a dear friend about the poor service other IRC devs provide"
+        echo "$INF Finished!"
+        echo "$INF Now all that's left to do is add the following to unrealircd.conf and /rehash:"
+        echo "***************************************"
+        echo loadmodule \"third/${FILE}\"\;
+        echo "***************************************"
+        echo "${C}Thanks for flying Valware™ ❤️"
+        
+    else
+        echo "$WRN Couldn't compile for some raisin?!?!?"
+    fi
+else
+    echo "$WRN Couldn't find module ${FILE}!"
+    echo "$INF Make sure you have the spelling done correctly"
+fi
