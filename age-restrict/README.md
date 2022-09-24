@@ -15,19 +15,17 @@ Does not provide any age verification in any way.
 
 
 This module only provides you with the ability to set someones age and age-restrict channels,
-
 should you somehow already have this information from the user beforehand (i.e. from a bot or services)
 
 
 
 __Provides commands:__
+```
+/SETAGE <user> <age>
 
-`/AGE <user> <age>`
-
-`/DELAGE <user>`
-
-
-`/CHAGE <#channel> <minimum age>`
+/DELAGE <user>
 
 
-
+/SETCHAGE <#channel> <minimum age>
+/DELCHAGE <#channel>
+```
