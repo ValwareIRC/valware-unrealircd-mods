@@ -107,6 +107,6 @@ t | Only Ops Can /TOPIC | Taken | Source
 u | Auditorium | Taken | Third-Party
 v | Voice | Taken | Source
 w | | Free |
-x | | Free |
+x | Reduced Moderation | Free | Third-Party
 y | | Free |
 z | Secure Only | Taken | Source
