@@ -320,7 +320,7 @@ int mutecheck_usermsg(Client *client, Client *target, const char **text, const c
 // default settings, yes show them the reason
 void setconf(void)
 {
-	ourconf.show_reason, 1;
+	ourconf.show_reason = 1;
 	safe_strdup(ourconf.reason, "You cannot send or receive messages except for staff and the support channel.");
 	ourconf.lagby = 500;
 }
