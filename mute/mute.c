@@ -7,8 +7,8 @@
 /*** <<<MODULE MANAGER START>>>
 module
 {
-		documentation "README.md";
-		troubleshooting "In case of problems, please check the README that came with this module or email v.a.pond@outlook.com";
+		documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/mute/README.md";
+		troubleshooting "In case of problems, please check the README or email me at v.a.pond@outlook.com";
 		min-unrealircd-version "6.*";
 		max-unrealircd-version "6.*";
 		post-install-text {
