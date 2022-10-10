@@ -6,16 +6,23 @@ You can choose whether or not to display an error to the user about their lost m
 
 ## Syntax ##
 List all muted users
-`/MUTE -list`
+```
+/MUTE -list
+```
 
 Display command help
-`/MUTE -help`
-
+```
+/MUTE -help
+```
 Mute a user called Lamer32
-`/MUTE Lamer32`
+```
+/MUTE Lamer32
+```
 
 Unmute a user called Valware
-`/UNMUTE Valware`
+```
+/UNMUTE Valware
+```
 
 ## Configuration ##
 Here is an example configuration block displaying the defaults. If you do not have a `mute` configuration block, it will use these as defaults.
