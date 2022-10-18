@@ -4,7 +4,14 @@
 
 `/DEFCON [servername|-all] N`
 
-N represents a number between 1 and 4.
+N represents a number between 0 and 4.
+Level | Description | Level in stars
+-|-|-
+0 | Off, no emergency | ☆☆☆☆
+1 | Critical emergency | ★★★★
+2 | High level emergency | ☆★★★
+3 | Medium level emergency | ☆☆★★
+4 | Low level emergency | ☆☆☆★
 
 ## Operclass Permission ##
 
