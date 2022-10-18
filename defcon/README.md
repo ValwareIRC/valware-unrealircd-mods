@@ -33,6 +33,7 @@ defcon {
 	default "local";
 	
 	/* A timeout for returning back to level 5 */
+	timeout 1h;
 	/* Settings for DEFCON 1
 	1 {
 		/* Global message to send to all affected users when this DEFCON level
@@ -121,6 +122,7 @@ defcon {
 Item name | Description | Expected value | Required
 ----------|-------------|----------------|---------
 `defcon::default` | Whether to action by local server or globally by default | `"local"` or `"global"` | Yes
+`defcon::timeout` | A length of time after which to resume normal (no) defcon level (5) | Time string like `1h` or `30m` | No
 `defcon::N::global-msg` | A message to display to users when that DEFCON level is activated | `"string"` | No
 `defcon::N::restrict-commands` | A comma-delimited list of commands to restrict | `"command1, command2"` | No
 `defcon::N::restrict-privmsg` | Restrict users from sending/receiving private messages | `yes` or `no` | No
