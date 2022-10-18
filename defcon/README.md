@@ -4,14 +4,14 @@
 
 `/DEFCON [servername|-all] N`
 
-N represents a number between 0 and 4.
-Level | Description | Level in stars
+N represents a number between `1` and `5`.
+Level | Description | GTA Heat Equivalent
 -|-|-
-0 | Off, no emergency | ☆☆☆☆
-1 | Critical emergency | ★★★★
-2 | High level emergency | ☆★★★
-3 | Medium level emergency | ☆☆★★
-4 | Low level emergency | ☆☆☆★
+1 | Critical emergency | ★★★★★
+2 | High level emergency | ☆★★★★
+3 | Medium level emergency | ☆☆★★★
+4 | Low level emergency | ☆☆☆★★
+5 | Off, no emergency | ☆☆☆☆★
 
 ## Operclass Permission ##
 
@@ -31,7 +31,8 @@ defcon {
 	 * server it was issued from.
 	*/ 
 	default "local";
-
+	
+	/* A timeout for returning back to level 5 */
 	/* Settings for DEFCON 1
 	1 {
 		/* Global message to send to all affected users when this DEFCON level
