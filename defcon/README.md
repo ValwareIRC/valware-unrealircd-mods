@@ -1,18 +1,19 @@
 # DEFCON for UnrealIRCd #
 
-### Syntax ###
+## Syntax ##
 
 `/DEFCON [servername|-all] N`
 
 N represents a number between 1 and 4.
 
-### Operclass Permission ###
+## Operclass Permission ##
 
 Requires operclass permission `defcon` to use.
 
-### Configuration ###
+## Configuration ##
 
-A `defcon` configuration block is needed for this to work. Example:
+A `defcon` configuration block is needed for this to work.
+### Example: ###
 
 ```
 defcon {
@@ -106,4 +107,28 @@ defcon {
 	}
 }
 
+```
+
+### Description ###
+Item name | Description | Expected value | Required
+----------|-------------|----------------|---------
+`defcon::default` | Whether to action by local server or globally by default | `"local"` or `"global"` | Yes
+`defcon::N::global-msg` | A message to display to users when that DEFCON level is activated | `"string"` | No
+`defcon::N::restrict-commands` | A comma-delimited list of commands to restrict | `"command1, command2"` | No
+`defcon::N::restrict-privmsg` | Restrict users from sending/receiving private messages | `yes` or `no` | No
+`defcon::N::restrict-chanmsg` | Restrict users from sending/receiving channel messages | `yes` or `no` | No
+`defcon::N::restrict-connections` | Restrict new connections to the server/network | `yes` or `no` | No
+`defcon::N::restrict-new-chans` | Restrict channels from being joined if the channel doesn't already exist | `yes` or `no` | No
+
+Note: While most of the items are not required, numbered blocks ARE required, even if they are empty.
+
+Example of a valid `defcon` cofiguration which does absolutely nothing:
+```
+defcon {
+	default "local";
+	1 { }
+	2 { }
+	3 { }
+	4 { }
+}
 ```
