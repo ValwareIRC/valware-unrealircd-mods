@@ -35,7 +35,7 @@ Here is an example configuration block displaying the defaults. If you do not ha
 mute {
         show-reason yes;
         reason "You cannot send or receive messages except for staff and the support channel.";
-        lag-time 500; // half a second
+        lag-time 500; // half a second (milliseconds)
 }
 
 ```
