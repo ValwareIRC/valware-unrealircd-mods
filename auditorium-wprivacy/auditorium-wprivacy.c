@@ -48,7 +48,7 @@ Cmode_t extcmode_auditorium = 0L; // Store bitwise value latur
 // Dat dere module header
 ModuleHeader MOD_HEADER = {
 	"third/auditorium-wprivacy", // Module name
-	"2.1.0", // Version
+	"2.1.1", // Version
 	"Same as auditorium.c except users without +q/+a/+o will only be able to see messages from those who do, and whose message starts with your nick", // Description
 	"Gottem, Valware", // Author
 	"unrealircd-6", // Modversion
@@ -140,7 +140,8 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 		// ..."relay" the message to +o etc only
 		new_message(client, NULL, &mtags);
 		sendto_channel(channel, client, client, "oaq", 0, SEND_ALL, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
-
+		if (HasCapability(client, "echo-message"))
+			sendto_one(client, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text);
 		/* if the user has channel access then we will do a check to see if the first word is a user on the channel, and show it only to them */
 		if (chanaccess) {
 							
