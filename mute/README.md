@@ -39,3 +39,8 @@ mute {
 }
 
 ```
+## Versions
+- `1.0` Initial commit
+- `1.1` Bug fixes
+- `1.2` More bug fixes (stop writing bugs!)
+- `1.3` Added message-tag visible to opers indicating the user is muted.
