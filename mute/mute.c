@@ -285,7 +285,7 @@ CMD_FUNC(CMD_UNMUTE)
 
 	if (parc < 2)
 	{
-		sendnumeric(client, ERR_NEEDMOREPARAMS, "UMUTE");
+		sendnumeric(client, ERR_NEEDMOREPARAMS, "UNMUTE");
 		return;
 	}
 
