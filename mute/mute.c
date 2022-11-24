@@ -25,7 +25,7 @@ module
 ModuleHeader MOD_HEADER
   = {
 	"third/mute",
-	"1.3",
+	"1.4",
 	"Globally mute a user", 
 	"Valware",
 	"unrealircd-6",
