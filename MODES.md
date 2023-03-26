@@ -64,7 +64,7 @@ B | | Free |
 C | No CTCP | Taken | Source
 D | DelayJoin | Taken | Source
 E | | Free |
-F | | Free |
+F | Flood Profile | Taken | Source
 G | Spamfilter | Taken | Source
 H | Chan History | Taken | Source
 I | Invitation | Taken | Source
