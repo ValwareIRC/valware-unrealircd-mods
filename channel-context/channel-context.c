@@ -24,7 +24,7 @@
 
 ModuleHeader MOD_HEADER
   = {
-	"channel-context",
+	"third/channel-context",
 	"1.0",
 	"Channel Context (IRCv3)",
 	"UnrealIRCd team",
