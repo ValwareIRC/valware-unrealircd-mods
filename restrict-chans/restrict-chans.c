@@ -57,9 +57,9 @@ MOD_TEST()
 
 int isreg_can_join(Client *client, Channel *channel, const char *key, char **errmsg)
 {
-	if (!channel->users && !IsLoggedIn(client))
+	if (!channel->users && !IsLoggedIn(client) && !has_channel_mode(channel, 'P'))
 	{
-		*errmsg = "%s :You must be logged in to create new channels", channel->name;
+		*errmsg = "%s :You must be logged in to create new channels - %s", channel->name, channel->mode;
 		return ERR_CANNOTDOCOMMAND;
 	}
 	return 0;
