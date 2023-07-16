@@ -11,7 +11,7 @@ mIRC Script can be found [here](https://github.com/ValwareIRC/mIRC-Scripts/blob/
 ### What To Send ###
 During connect (or at any point really) request the cap `valware.uk/cmdslist` and request the list with `CMDSLIST`
 ```
-CAP REQ valware.uk/cmdslist`
+CAP REQ valware.uk/cmdslist
 CMDSLIST
 ```
 ### What You'll Receive ###
