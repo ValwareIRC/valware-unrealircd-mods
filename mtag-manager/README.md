@@ -23,9 +23,9 @@ message-tags {
 Here is an example of a configuration block which adds the same tags that the `third/kiwiirc-tags` module provides.
 ```
 message-tags {
-  +kiwiirc/fileuploader;
-  +kiwiirc/ttt;
-  +kiwiirc/conference;
+  +kiwiirc.com/fileuploader;
+  +kiwiirc.com/ttt;
+  +kiwiirc.com/conference;
   +data; // will be deprecated soon
 }
 ```
