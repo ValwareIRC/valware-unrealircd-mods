@@ -60,7 +60,7 @@ z | Is Secure | Taken | Source
 | Chanmode | Name | Type | From |
 |------|------|--------|----|
 A | | Free |
-B | | Free |
+B | Block Mass-Highlight | Taken | Third-Party
 C | No CTCP | Taken | Source
 D | DelayJoin | Taken | Source
 E | | Free |
