@@ -98,6 +98,7 @@ j | Kick Join Delay | Taken | Third-Party
 k | Key | Taken | Source
 l | Limit | Taken | Source
 m | Moderated | Taken | Source
+n | No External Msg | Taken | Source
 o | ChanOp | Taken | Source
 p | Private | Taken | Source
 q | Owner | Taken | Source
