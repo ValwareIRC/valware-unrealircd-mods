@@ -7,7 +7,8 @@ For commands and syntax, please refer to the [IRCv3 spec for account registratio
 Please note: If you wish to use this module, you must first remove the alias for 'register' in conf/aliases.conf
 
 # Known Implemenations
-- [ ] DALEK IRC Services (ETA June)
+- [x] DALEK IRC Services
+- [ ] Atheme (ETA September)
 
 
 ## Server2Server
