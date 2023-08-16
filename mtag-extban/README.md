@@ -8,10 +8,9 @@ This is a **Group 4** extban which means you may **only** stack it with the `~ti
 
 ### Syntax ###
 ```
-// ban all mtags and only allow typing
+// ban all mtags
 MODE #channel +b ~mtag:+*
-
-// except typing
+// but allow typing
 MODE #channel +e ~mtag:+typing
 
 // hmm actually I only want to have ratified mtags and stop "draft/"-prefixed tags
