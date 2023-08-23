@@ -22,25 +22,24 @@ module
 */
 #include "unrealircd.h"
 
-#define MAX_MTAG_BANS_PER_CHAN	 15 /* Max number of ~T bans in a channel. */
+#define MAX_MTAG_BANS_PER_CHAN	 15
 
 ModuleHeader MOD_HEADER
 = {
 	"third/mtag-extban",
-	"1.0",
+	"1.1",
 	"ExtBan ~mtag - Prevent usage of certain IRCv3 message-tags per channel",
 	"Valware",
 	"unrealircd-6",
 };
 /* Forward declarations */
-CMD_OVERRIDE_FUNC(extban_mtag_check);
-
 int mtag_check_ban(Client *client, Channel *channel, char *ban, char *msg, const char **errmsg);
 const char *extban_mtag_conv_param(BanContext *b, Extban *extban);
 int extban_mtag_is_ok(BanContext *b);
 void mtag_search_and_destroy(MessageTag **mtags, Channel *chan);
 int mtag_extban_match(MessageTag *m, char *banstr);
 int count_mtag_bans(Ban *ban);
+int extban_mtag_check(Client *client, Channel *channel, MessageTag **mtags, const char *text, SendType sendtype);
 
 /** Called upon module init */
 MOD_INIT()
@@ -60,9 +59,9 @@ MOD_INIT()
 		return MOD_FAILED;
 	}
 
+	HookAdd(modinfo->handle, HOOKTYPE_PRE_CHANMSG, 0, extban_mtag_check);
 	// overriding these commands seeeems to be the only way to do this..
-	CommandOverrideAdd(modinfo->handle, "PRIVMSG", 0, extban_mtag_check);
-	CommandOverrideAdd(modinfo->handle, "TAGMSG", 0, extban_mtag_check);
+	
 	
 	MARK_AS_GLOBAL_MODULE(modinfo);
 	
@@ -98,25 +97,10 @@ int extban_mtag_is_ok(BanContext *b)
 }
 
 
-CMD_OVERRIDE_FUNC(extban_mtag_check)
+int extban_mtag_check(Client *client, Channel *channel, MessageTag **mtags, const char *text, SendType sendtype)
 {
-	MessageTag *m;
-	Channel *target;
-	Ban *ban;
-	// satisfy the requirements of our check (has mtag list, has target, local user)
-	if (parc < 1 || BadPtr(parv[1]) || !recv_mtags || !MyUser(client))
-	{
-		CallCommandOverride(ovr, client, recv_mtags, parc, parv);
-		return;
-	}
-	// make sure our channel exists and has a bans list to check
-	if (!(target = find_channel(parv[1])) || !target->banlist)
-	{
-		CallCommandOverride(ovr, client, recv_mtags, parc, parv);
-		return;
-	}
-	mtag_search_and_destroy(&recv_mtags, target);
-	CallCommandOverride(ovr, client, recv_mtags, parc, parv);
+	mtag_search_and_destroy(mtags, channel);
+	return 0;
 }
 
 
@@ -134,12 +118,12 @@ const char *extban_mtag_conv_param(BanContext *b, Extban *extban)
 */
 void mtag_search_and_destroy(MessageTag **mtags, Channel *chan)
 {
-	MessageTag *m;
+	MessageTag *m, *m_next;
 	Ban *b, *e; // chmode +b, +e
-	Ban *except = chan->exlist;
-	int do_drop_mtag = 0;
-	for (m = *mtags; m; m = m->next)
+	for (m = *mtags; m; m = m_next)
 	{
+		int do_drop_mtag = 0;
+		m_next = m->next;
 		if (*m->name != '+') // if it's not a client tag, we don't care
 			continue;
 
@@ -152,8 +136,13 @@ void mtag_search_and_destroy(MessageTag **mtags, Channel *chan)
 				if (mtag_extban_match(m, e->banstr))
 					do_drop_mtag = 0;
 
-		if (do_drop_mtag) // silently drop it so as not to (potentially) spam the user (case of typing tags)
+		if (do_drop_mtag)
+		{ // silently drop it so as not to (potentially) spam the user (case of typing tags)
 			DelListItem(m, *mtags);
+			safe_free(m->name);
+			safe_free(m->value);
+			safe_free(m);
+		}
 	}
 }
 
@@ -178,8 +167,8 @@ int mtag_extban_match(MessageTag *m, char *banstr)
 	}
 
 	// check if the ban is for message tags
-	if ( (!strncmp(banstr, "~M:", 3) && ( match_simple(banstr+3, m->name) || !strcmp(banstr+3, "+*") ) )
-			|| ( !strncmp(banstr, "~mtag:", 6) && ( match_simple(banstr+6, m->name) || !strcmp(banstr+6, "+*") ) ))
+	if ( (!strncmp(banstr, "~M:", 3) && ( match_simple(banstr+3, m->name) ) )
+			|| ( !strncmp(banstr, "~mtag:", 6) && ( match_simple(banstr+6, m->name) ) ))
 	{
 		return 1;
 	}
