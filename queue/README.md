@@ -1,6 +1,8 @@
 # Queue
 ## Description
 This module lets users join a queue. IRCOps with operclass permission `queue` will be able to view this list and have access to a second command which will begin a conversation between the queuer and the staff member.
+
+Also provides RPC method `queue.list` to fetch a list of users in the queue.
 ## `/QUEUE` Syntax
 ### Join the queue:
 `/QUEUE`
