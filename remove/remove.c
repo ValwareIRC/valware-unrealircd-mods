@@ -9,7 +9,7 @@ Author: Valware
 module
 {
 		documentation "https://github.com/ValwareIRC/valware-unrealircd-mods/blob/main/remove/remove.md";
-		troubleshooting "In case of problems, check the documentation or e-mail me at ";
+		troubleshooting "In case of problems, check the documentation or e-mail me at valerie@valware.co.uk";
 		min-unrealircd-version "6.*";
 		max-unrealircd-version "6.*";
 		post-install-text {
