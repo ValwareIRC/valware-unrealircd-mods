@@ -391,6 +391,7 @@ int deepl_translate_configtest(ConfigFile *cf, ConfigEntry *ce, int type, int *e
 	return errors ? -1 : 1;
 }
 
+
 int deepl_translate_configrun(ConfigFile *cf, ConfigEntry *ce, int type)
 {
 	ConfigEntry *cep;
