@@ -18,10 +18,11 @@ This package comes in two parts:
 - A webserver (apache2/nginx)
 - PHP
 - Composer
+- A Google account and reCAPTCHA keys ([see link](https://www.google.com/recaptcha/admin/create))
 
 ## How to use
 1. Install UnrealIRCd module:<br>```./unrealircd module install third/google-recaptcha```
-2. Install the required webpage to your preferred location (see link)
+2. Install the required webpage to your preferred location ([see link](https://github.com/ValwareIRC/unrealircd-google-recaptcha))
 3. Configure your `unrealircd.conf` to include the module settings to point to your webpage (see below)
 4. Rehash your IRCd (`./unrealircd rehash` from your terminal or `/rehash` from IRC)
 5. Set an RLINE to match a mask. Supports [Extended Server Bans](https://www.unrealircd.org/docs/Extended_server_bans).
