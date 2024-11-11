@@ -198,7 +198,7 @@ CMD_FUNC(ADDDRUNK)
 	
 	if (IsDrunk(target))
 	{
-		sendto_one(target, NULL, "FAIL %s %s %s :%s", CMD_DRUNK, "USER_ALREADY_DRUNK",target->name,"That user is already marked as Drunk.");
+		sendto_one(client, NULL, "FAIL %s %s %s :%s", CMD_DRUNK, "USER_ALREADY_DRUNK",target->name,"That user is already marked as Drunk.");
 		return;
 	}
 
@@ -239,7 +239,7 @@ CMD_FUNC(DELDRUNK)
 	}
 	if (!IsDrunk(target))
 	{
-		sendto_one(target, NULL, "FAIL %s %s %s :%s", CMD_SOBER, "USER_NOT_DRUNK",target->name,"That user is not marked as Drunk anyway.");
+		sendto_one(client, NULL, "FAIL %s %s %s :%s", CMD_SOBER, "USER_NOT_DRUNK",target->name,"That user is not marked as Drunk anyway.");
 		return;
 	}
 		
