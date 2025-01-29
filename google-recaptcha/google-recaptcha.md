@@ -57,7 +57,7 @@ RLINE <mask|nick> <duration> <reason>
 UNRLINE <mask|nick>
 ```
 `RLINE` (reCAPTCHA-Line) and `UNRLINE` a TKL-Like command which lets you define which connections are required to complete a reCAPTCHA. The reason you specify here will be the message displayed to the user upon connect.<br>
-[Extended Server Bans](https://www.unrealircd.org/docs/Extended_server_bans). It is recommended that you combine this with Security Groups. Here are some examples:
+This command supports [Extended Server Bans](https://www.unrealircd.org/docs/Extended_server_bans). It is recommended that you combine this with Security Groups. Here are some examples:
 ```
 /RLINE ~security-group:unknown-users 0 New users are required to prove their humanity.
 /RLINE ~asn:16276 4w VPS users from OVH are required to prove humanity.
