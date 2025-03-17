@@ -31,7 +31,7 @@ Alternatively you can [head over to my website](https://valware.uk/forums/forum/
 
 Oh no! I'm sorry that it isn't working correctly, but thank you for coming to let me know!
 
-You can let me know what's missing by [creating an Issue here](https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new?assignees=ValwareIRC&labels=bug&template=bug_report.md&title=My+shiny+new+bug+report), or you can [tell me on my website!](https://valware.uk/forums/forum/unrealircd-modules/)
+You can let me know what's missing by [creating an Issue here](https://github.com/ValwareIRC/valware-unrealircd-mods/issues/new?assignees=ValwareIRC&labels=bug&template=bug_report.md&title=My+shiny+new+bug+report).
 <br><br><br>
 
 ![](https://media.istockphoto.com/vectors/colorful-typography-banner-vector-id1254529037?k=20&m=1254529037&s=170667a&w=0&h=puy4_Uy1iC50cfaTObzEB-Y9_Jy9AaNg8RQdyFV7O6o=)
