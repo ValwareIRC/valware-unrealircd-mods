@@ -22,3 +22,11 @@ If you wanted to test this module, I would NOT suggest doing so in a production 
 
 ### ⚠️ OTHER WARNINGS lol
 If your sever doesn't use +q, for example using the [blacklist-module directive](https://www.unrealircd.org/docs/Blacklist-module_directive) to blacklist the module "chanmodes/chanowner" (which provides +q for `~` channel users) then regular users cannot rename channels.
+
+### Configuration
+There is no required configuration but there is one optional directive to decide the cooldown for renaming a channel. Here is an example using default value:
+```
+channel-rename {
+  allowed-interval 15m;
+}
+```
