@@ -4,6 +4,15 @@ Inspired by InspIRCd's module of the same name
 
 Provides PrefixMode `+Y` which uses prefix `!`.
 
+## Config (Optional) (From v2.0 onwards)
+```
+ojoin {
+  show-entry-message yes; // default
+  entry-message "$nick has joined on official network bidness"; // example
+  //show-to "@"; // show to ops and higher 
+}
+```
+
 ## Syntax
 `OJOIN <chan>`
 
