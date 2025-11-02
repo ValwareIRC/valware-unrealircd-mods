@@ -10,7 +10,7 @@ Allows RPC users to send server notices (or privmsgs) to specific users
 |Param|Description|Type|Required|
 |-|-|-|-|
 |`nick`|The nick or UID of the user.|string|✅|
-|`msg`|The message to send the user.<br>Can contain multiple lines using `\\n`.|string|✅|
+|`msg`|The message to send the user.<br>Can contain multiple lines using<br>`\\n` as a delimeter.|string|✅|
 |`as_privmsg`|Whether to send as a PRIVMSG<br>instead of a notice.|boolean|❌|
 
 ## Example
