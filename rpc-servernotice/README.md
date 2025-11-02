@@ -7,11 +7,11 @@ Allows RPC users to send server notices (or privmsgs) to specific users
 `servernotice.send`
 
 ### Params
-|Param|Description|Expectation|Required|
+|Param|Description|Type|Required|
 |-|-|-|-|
-|`nick`|The nick or UID of the user.|string|Yes|
-|`msg`|The message to send the user. Can contain multiple lines using `\\n`.|string|Yes|
-|`as_privmsg`|Whether to send as a PRIVMSG instead of a notice.|boolean|No|
+|`nick`|The nick or UID of the user.|string|✅|
+|`msg`|The message to send the user. Can contain multiple lines using `\\n`.|string|✅|
+|`as_privmsg`|Whether to send as a PRIVMSG instead of a notice.|boolean|❌|
 
 ## Example
 This example shows sending multiple lines, with `\\n` as the new line (remember to use double backslash!)
