@@ -10,10 +10,13 @@ Allows RPC users to send server notices (or privmsgs) to specific users
 |Param|Description|Expectation|
 |-|-|-|
 |`nick`|Required. The nick or UID of the user.|string|
-|`msg`|Required. The message to send the user.|string|
+|`msg`|Required. The message to send the user. Can contain multiple lines using `\\n`.|string|
 |`as_privmsg`|Optional. Whether to send as a PRIVMSG instead of a notice.|boolean|
 
 ## Example
+This example shows sending multiple lines, with `\\n` as the new line (remember to use double backslash!)
+
+Of course, if you do not wish to send multiple lines, you do not need to use `\\n`
 ```json
 {
   "jsonrpc":"2.0",
@@ -21,7 +24,7 @@ Allows RPC users to send server notices (or privmsgs) to specific users
   "method":"servernotice.send",
   "params":{
     "nick":"Valware",
-    "msg":"Yo wassup bro ima server lmao",
+    "msg":"Yo wassup bro ima server lmao\\nJust kidding, welcome to the server, main channel is #lobby lol",
     "as_privmsg":false
   }
 }
