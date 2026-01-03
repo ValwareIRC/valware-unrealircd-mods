@@ -51,7 +51,7 @@ static mtagstruct ourconf;
 ModuleHeader MOD_HEADER =
 {
 	"third/mtag-manager",
-	"1.0",
+	"1.0.1",
 	"Allows server owners to permit specific client-to-client tags",
 	"Valware",
 	"unrealircd-6",
@@ -76,7 +76,6 @@ MOD_LOAD()
 		for (ml = ourconf.mtags_list; ml; ml = ml->next)
 		{
 			memset(&mtag, 0, sizeof(mtag));
-			mtag.is_ok = 1;
 			mtag.flags = MTAG_HANDLER_FLAGS_NO_CAP_NEEDED;
 			mtag.name = ml->line;
 			MessageTagHandlerAdd(modinfo->handle, &mtag);
