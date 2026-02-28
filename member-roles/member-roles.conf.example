@@ -1,0 +1,225 @@
+/* Example configuration for member-roles module
+ * 
+ * IMPORTANT: Module MUST be loaded globally, ONLY UNREALIRCD 6.2+ IS SUPPORTED
+ *
+ * This module allows you to create custom channel member roles with granular permissions.
+ * Each role can have its own prefix, rank, and specific permissions for channel operations.
+ *
+ * This module also provides an extban (extended ban), which, when used with +I and +e, allow
+ * automatic setting of the mode level to joining users who match. Basically "auto-op" but
+ * using any of the custom modes you've specified (examples further down).
+ *
+ * EXTBAN ~automode:
+ * Syntax: ~automode:modes:matcher
+ * 
+ * You can specify multiple modes to set at once (e.g., "ov" to give both op and voice).
+ * 
+ * Examples:
+ *   /MODE #channel +I ~automode:o:*!*@trusted.host       - Auto-op users from trusted.host
+ *   /MODE #channel +e ~automode:v:~account:*			  - Auto-voice users who are logged in
+ *   /MODE #channel +I ~automode:W:~certfp:abc123...      - Auto-assign custom mode W via certfp
+ *   /MODE #channel +I ~automode:ov:*!admin@*.example.com - Auto-op AND auto-voice admins
+ *   /MODE #channel +e ~automode:qW:~account:SuperUser    - Give chanowner AND custom mode W
+ *
+ * The extban can ONLY be used with +I (invex) or +e (except), NOT with regular bans (+b).
+ * This allows you to automatically grant modes to users matching specific patterns when they join.
+ * You must have permission to set each mode you specify in the automode extban.
+ *
+ * INHERITANCE:
+ * Roles can inherit permissions from other roles using the 'inherit' directive.
+ * - Only single inheritance is supported (one role inherits from one other role)
+ * - Inheritance chains can be up to 8 levels deep (A -> B -> C ... -> H)
+ * - Boolean permissions use OR logic: if either the role OR any inherited role has permission, the final role has it
+ * - can_set/can_unset mode strings are merged (unique characters from all inherited roles)
+ * - Circular dependencies are detected and will cause a config error
+ * - Self-referencing (role inheriting from itself) is not allowed
+ * 
+ * Example:
+ *   moderator inherits from helper -> moderator gets all of helper's permissions plus its own
+ *   If helper can_kick=no and moderator can_kick=yes, final result is yes (OR logic)
+ *   If helper can_set="v" and moderator can_set="b", final result is "vb" (merged)
+ *
+ * DEFAULT PERMISSIONS:
+ * You can define a "default" block to set permissions for channel members who have
+ * no channel mode at all (regular users). This is useful when this module replaces
+ * the built-in mode system entirely.
+ * - The default block only accepts a "permissions" sub-block (no prefix/rank/mode)
+ * - Inheritance is not allowed in the default block
+ * - If no default block is defined, the module does not interfere with normal IRCd
+ *   behavior for users without a custom role
+ *
+ * Example:
+ *   default {
+ *       permissions {
+ *           can_see_bans no;
+ *           can_see_invex no;
+ *           can_see_excepts no;
+ *           is_voice no;
+ *       }
+ *   }
+ *
+ * Configuration format:
+ * member-roles {
+ *     role-name {
+ *         prefix "X";      // Single character prefix shown in NAMES
+ *         rank 1500;       // Numeric rank (higher = more power)
+ *         mode "x";        // Single character mode letter
+ *         
+ *         permissions {
+ *             // Command permissions
+ *             can_kick yes;            // Can use KICK command
+ *             can_topic yes;           // Can change channel topic
+ *             can_invite yes;          // Can use INVITE command
+ *             
+ *             // Special permissions
+ *             can_override_bans yes;   // Can talk even if banned (must be in channel)
+ *             is_voice yes;            // Bypass ALL message restrictions (+m/+n/+c/+S/+N/+C/+T/+R/+M)
+ *             is_unkickable yes;       // Cannot be kicked from channel
+ *             
+ *             // List viewing permissions
+ *             can_see_bans yes;        // Can view +b (ban) list even without channel ops
+ *             can_see_invex yes;       // Can view +I (invite exception) list
+ *             can_see_excepts yes;     // Can view +e (ban exception) list
+ *                                      // Note: You must still be in the channel to view these lists
+ *             
+ *             // Mode change permissions (works with ALL channel modes, not just member modes)
+ *             can_set "bIetmlov";      // Which modes this role can set
+ *             can_unset "bIetmlov";    // Which modes this role can unset
+ *                                      // Use "*" to allow all modes (subject to rank for member modes)
+ *             
+ *             // Inheritance (optional)
+ *             inherit role-name;       // Inherit permissions from another role
+ *         }
+ *     }
+ * }
+ *
+ * DEFAULT BLOCK:
+ * member-roles {
+ *     default {
+ *         permissions {
+ *             // Permissions for users with no channel mode
+ *             can_see_bans no;
+ *             can_see_invex no;
+ *             can_see_excepts no;
+ *         }
+ *     }
+ *     role-name {
+ *         ...
+ *     }
+ * }
+ *
+ * IMPORTANT NOTES:
+ * - Ranks should be unique and determine the hierarchy
+ * - Standard ranks: voice=-1, halfop=1000, chanop=2000, chanadmin=3000, chanowner=4000
+ * - Mode letters must not conflict with existing modes
+ * - To replace built-in modes, use blacklist-module to unload them first
+ * - Use /MEMBERROLES command (oper only) to list configured roles
+ * - can_override_bans only works when user is in the channel (not for JOIN)
+ * - is_voice allows bypassing ALL message restrictions (+m/+n/+c/+S/+N/+C/+T/+R/+M)
+ * - can_set/can_unset work with ALL channel modes (member and non-member modes like +m, +i, +k, etc.)
+ * - can_see_* permissions allow viewing mode lists without needing +h/+o/+a/+q
+ * - The "default" block controls permissions for users with no channel mode
+ *
+ * Example: Creating a "moderator" role between halfop and chanop
+ */
+
+member-roles {
+	/* Default permissions for channel members with no mode.
+	 * If this block is present, the module controls permissions for ALL channel
+	 * members, not just those with a custom role. Without this block, users
+	 * with no custom role are handled by normal IRCd logic.
+	 */
+	default {
+		permissions {
+			can_kick no;
+			can_topic no;
+			can_invite no;
+			can_override_bans no;
+			is_voice no;
+			is_unkickable no;
+			can_see_bans no;
+			can_see_invex no;
+			can_see_excepts no;
+		}
+	}
+
+	moderator {
+		prefix "$";
+		rank 1500;
+		mode "W";
+		
+		permissions {
+			can_kick yes;
+			can_topic yes;
+			can_invite yes;
+			can_override_bans yes;
+			is_voice yes;
+			is_unkickable no;
+			can_set "bIetv";
+			can_unset "bIetv";
+		}
+	}
+	
+	/* Example: Creating a "helper" role with limited permissions */
+	helper {
+		prefix "!";
+		rank 500;
+		mode "X";
+		
+		permissions {
+			can_kick no;
+			can_topic yes;
+			can_invite yes;
+			can_override_bans no;
+			is_voice yes;
+			is_unkickable no;
+			can_set "I";
+			can_unset "I";
+		}
+	}
+	
+	/* Example: Junior moderator inherits from helper and adds kick permission */
+	junior-moderator {
+		prefix "~";
+		rank 750;
+		mode "Z";
+		
+		permissions {
+			can_kick yes;           // Override helper's can_kick=no -> final result is yes (OR logic)
+			can_set "v";            // Merged with helper's "I" -> final result is "Iv"
+			inherit helper;         // Inherits all other permissions from helper
+		}
+	}
+	
+	/* Example: VIP role - can't be kicked, can bypass bans and talk when moderated */
+	vip {
+		prefix "+";
+		rank 100;
+		mode "Y";
+		
+		permissions {
+			can_kick no;
+			can_topic no;
+			can_invite no;
+			can_override_bans yes;
+			is_voice yes;
+			is_unkickable yes;
+			can_set "";
+			can_unset "";
+		}
+	}
+}
+
+/* To use this module with custom roles that replace built-in ones:
+ *
+ * 1. Add to unrealircd.conf:
+ *    loadmodule "third/member-roles";
+ *
+ * 2. If replacing built-in modes (optional), blacklist them first:
+ *    blacklist-module "chanmodes/halfop";  // if replacing +h
+ *    blacklist-module "chanmodes/chanop";  // if replacing +o
+ *
+ * 3. Add your member-roles configuration block
+ *
+ * 4. Rehash or restart UnrealIRCd
+ */
