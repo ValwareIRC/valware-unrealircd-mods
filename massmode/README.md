@@ -3,10 +3,14 @@ Useful for networks where the staffers own, maintain and moderate all the channe
 
 ## Examples
 ### Setting channel modes en masse
-Set all channels as +m (moderated)
+Set all channels as +m (moderated).
+
+Requires operclass permission `mass:channelmode`
 
 `MASSMODE +m`
 
 Set all users as +R (can receive messages only from registered users)
+
+Requires operclass permission `mass:usermode`
 
 `MASSUMODE +R`
