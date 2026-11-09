@@ -33,7 +33,7 @@ CMD_FUNC(cmd_massmode)
 {
     if (BadPtr(parv[1]))
     {
-        sendnumeric(client, ERR_NEEDMOREPARAMS, "MASSMODE", "Not enough parameters");
+        sendnumeric(client, ERR_NEEDMOREPARAMS, "MASSMODE");
         return;
     }
     if (!strcasecmp(clictx->cmd->cmd, "MASSMODE"))
