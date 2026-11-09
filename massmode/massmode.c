@@ -56,7 +56,7 @@ CMD_FUNC(cmd_massmode)
                 parx[i++] = parv[j++];
             
             parx[i] = NULL;
-            do_cmd(&me, NULL, "MODE", MAXPARA, parx);
+            do_cmd(&me, NULL, "MODE", i, parx);
         }
     } else if (!strcasecmp(clictx->cmd->cmd, "MASSUMODE"))
     {
@@ -77,7 +77,7 @@ CMD_FUNC(cmd_massmode)
                 parx[i++] = parv[j++];
             
             parx[i] = NULL;
-            do_cmd(&me, NULL, "SVS2MODE", MAXPARA, parx);
+            do_cmd(&me, NULL, "SVS2MODE", i, parx);
         }
     }
 }
