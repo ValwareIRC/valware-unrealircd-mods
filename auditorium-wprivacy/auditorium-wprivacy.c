@@ -160,7 +160,7 @@ int auditorium_hook_cansend_chan(Client *client, Channel *channel, Membership *l
 			if (!user)
 				user = get_history(tok, (long)KILLCHASETIMELIMIT);
 
-			if (user && user != client && IsMember(user,channel) && !check_channel_access(user, channel, "o")) // if they're on that channel and don't have access (wouldn't see the message)
+			if (user && user != client && IsMember(user,channel) && !check_channel_access(user, channel, "oaq")) // if they're on that channel and don't have access (wouldn't see the message)
 					sendto_one(user, mtags, ":%s %s %s :%s", client->name, (notice ? "NOTICE" : "PRIVMSG"), channel->name, *text); // if it's for them, show them
 			
 		}
